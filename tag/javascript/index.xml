@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript | Neemann MSGIS</title>
+    <link>https://eneemann.github.io/tag/javascript/</link>
+      <atom:link href="https://eneemann.github.io/tag/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <description>JavaScript</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 18 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_512x512_fill_lanczos_center_2.png</url>
+      <title>JavaScript</title>
+      <link>https://eneemann.github.io/tag/javascript/</link>
+    </image>
+    
+    <item>
+      <title>Web GIS</title>
+      <link>https://eneemann.github.io/project/web-gis/</link>
+      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/web-gis/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Web%20GIS%20-%20presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Note: the servers that hosted the web page for this project were retired in 2018, so a live version of the page no longer exists&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As a result of changes in climate and population growth, there has been increased competition for freshwater in the Western U.S. in recent decades. This trend is likely to intensity in the future as populations continue to grow and uncertainty surrounding the climate in the Intermountain West continues. The objective of this project was to investigate county-level water consumption in Montana through the creation of a web map (Figure 1). Specifically, surface water usage and sources were mapped and explored.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-screenshot-of-final-web-page&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20full%20page%20big_hu88c3335c433c88177a4d3bd240699562_1087208_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 1. Screenshot of final web page.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20full%20page%20big_hu88c3335c433c88177a4d3bd240699562_1087208_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1075&#34; height=&#34;752&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Screenshot of final web page.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data--methods&#34;&gt;Data &amp;amp; Methods&lt;/h2&gt;
+&lt;p&gt;The primary data sets for this project include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Excel spreadsheet with county-level water consumption statistics from 2010&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana county boundaries (polygons)&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana rivers and streams (polylines)&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana lakes (polygons)&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana cities (points)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;First, to prepare the data for consumption by the web map, the spreadsheet was joined to the counties shapefile to link surface water statistics to their geographic region.  Second, all shapefiles were loaded into an ArcMap document, labelled, and symbolized.  Third, the data was published as a map service, which was later consumed by the web page using the ArcGIS JavaScript API v4.3.  Additional organization of the web page and customization of features was completed through a combination of HTML, CSS, and JavaScript coding (Figure 2).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-snapshot-of-javascript-code&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20code_hu1ecb3590bf79ac1bad16614ec3727eeb_42424_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Snapshot of JavaScript code.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20code_hu1ecb3590bf79ac1bad16614ec3727eeb_42424_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;662&#34; height=&#34;355&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Snapshot of JavaScript code.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;functionality&#34;&gt;Functionality&lt;/h2&gt;
+&lt;p&gt;The finished web page had the following functionality:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Query information with a pop-up window on click (Figure 3)
+&lt;ul&gt;
+&lt;li&gt;County Name&lt;/li&gt;
+&lt;li&gt;Population&lt;/li&gt;
+&lt;li&gt;Area&lt;/li&gt;
+&lt;li&gt;Surface Freshwater Withdrawals&lt;/li&gt;
+&lt;li&gt;Total Water Withdrawals&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Layer list toggle on/off capability&lt;/li&gt;
+&lt;li&gt;Basemap toggle between “streets” and “satellite”&lt;/li&gt;
+&lt;li&gt;Legend display&lt;/li&gt;
+&lt;li&gt;Zoom in/out by scroll or widget&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-example-of-pop-up-functionality&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20popup_hub4b8205216ebd3cd94e9c0355cfd701b_96011_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Example of pop-up functionality.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20popup_hub4b8205216ebd3cd94e9c0355cfd701b_96011_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;726&#34; height=&#34;427&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Example of pop-up functionality.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data-sources&#34;&gt;Data Sources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Montana State Library Geographic Information Clearinghouse 
+&lt;a href=&#34;http://geoinfo.msl.mt.gov/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://geoinfo.msl.mt.gov/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Programming and Scripting (HTML, CSS, JavaScript)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

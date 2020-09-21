@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python | Neemann MSGIS</title>
+    <link>https://eneemann.github.io/tag/python/</link>
+      <atom:link href="https://eneemann.github.io/tag/python/index.xml" rel="self" type="application/rss+xml" />
+    <description>Python</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_512x512_fill_lanczos_center_2.png</url>
+      <title>Python</title>
+      <link>https://eneemann.github.io/tag/python/</link>
+    </image>
+    
+    <item>
+      <title>Capstone</title>
+      <link>https://eneemann.github.io/project/capstone/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/capstone/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Phragmites%20-%20Poster.pdf&#34; target=&#34;_blank&#34;&gt;Poster&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Phragmites%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The invasive species Phragmites australis, or common reed, causes numerous problems and poses a significant threat to Utah wetlands, including the Great Salt Lake. The tall reed grows very densely into invaded regions, crowds out native species, disrupts migratory bird habitats, and negatively impacts recreation. It also alters the surface water regime, often converting submerged or saturated soils to dry land. As a result, the Utah Department of Natural Resources, Division of Forestry, Fire, and State Lands (FFSL), has taken an aggressive approach to mitigating the Phragmites problem. A big component of Phragmites mitigation includes spraying a wetland-safe herbicide to kill the plant and allow native species to return (Figure 1) using GPS-guided equipment. Efficient spraying requires accurate geographic data representing Phragmites boundaries, but it is currently unavailable. This project generates Phragmites maps from remotely sensed imagery, including satellite and unmanned aerial system platforms (UAS), using a prototype, automated Python script.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-reference-map-of-howard-slough-mitigation-area-left-and-study-area-for-this-project-including-the-uas-imagery-right&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20area_hu5165b237d894a8ae9bbfd6c4c8f5ed1e_546977_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Reference map of Howard Slough mitigation area (left) and study area for this project, including the UAS imagery (right).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20area_hu5165b237d894a8ae9bbfd6c4c8f5ed1e_546977_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;778&#34; height=&#34;520&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Reference map of Howard Slough mitigation area (left) and study area for this project, including the UAS imagery (right).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;methodology&#34;&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;Remotely sensed imagery was collected from three different platforms to facilitate DNR’s Phragmites mitigation work in the Howard Slough Waterfowl Management Area (Figure 2). The image platforms (Table 1), include the European Space Agency’s Sentinel-2 satellite, DigitalGlobe’s WorldView-2 (WV-2) satellite, and PMG Vegetation’s UAS. Each platform collects imagery in different wavelength bands and spatial resolutions.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-1-remote-sensing-imagery-platforms-used-in-this-study-and-their-attributes&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20table1_hu7f57b0cb0c0d881766a10c120a0f2a3d_28800_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Table 1. Remote sensing imagery platforms used in this study and their attributes.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20table1_hu7f57b0cb0c0d881766a10c120a0f2a3d_28800_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;451&#34; height=&#34;120&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 1. Remote sensing imagery platforms used in this study and their attributes.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;These images are then passed into an automated Python script (workflow depicted in Figure 3) that exports a shapefile for use in GPS-enabled Phragmites spraying equipment.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-diagram-of-automated-script-workflow-the-left-columns-describe-the-scripts-primary-functions-while-the-right-columns-represent-of-snapshot-of-each-functions-output&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20method%20wide_hu7fa30e974d7d9247d51e761da970a195_520699_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Diagram of automated script workflow. The left columns describe the script’s primary functions, while the right columns represent of snapshot of each function’s output.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20method%20wide_hu7fa30e974d7d9247d51e761da970a195_520699_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1143&#34; height=&#34;661&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Diagram of automated script workflow. The left columns describe the script’s primary functions, while the right columns represent of snapshot of each function’s output.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The final classified images show quite different results (Figure 4), but each platform scored well (above 0.9) on several validation metrics (Table 2).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-2-a-sample-of-accuracy-metrics-for-each-platforms-final-classification-metrics-are-calculated-from-independent-validation-pixels-that-were-not-used-to-train-the-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20table2_hu9729946a28f176f14b69884f2bcd011d_17558_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 2. A sample of accuracy metrics for each platform’s final classification. Metrics are calculated from independent validation pixels that were not used to train the model.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20table2_hu9729946a28f176f14b69884f2bcd011d_17558_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;553&#34; height=&#34;245&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 2. A sample of accuracy metrics for each platform’s final classification. Metrics are calculated from independent validation pixels that were not used to train the model.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;While classification differences are expected for a complex wetland scene, the high scores for each platform may indicate that the training/validation data samples were unambiguous and easy to classify. Sentinel-2 even had a perfect score for producer’s accuracy with the live Phragmites class. Both objective accuracy metrics and subjective assessment indicate that WorldView-2 performed the best. It appears to have the most probable and coherent classification, with the best representation of dead Phragmites in previously-treated areas. The UAS results are much less coherent, but the higher resolution may better capture small pockets of water and native emergent vegetation. All platforms appear to over-classify live Phragmites and may have difficulty in distinguishing it from other forms of live vegetation. Generally, both higher resolution data and additional wavelength bands appear to improve image classification.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-standard-red-green-blue-rgb-image-from-each-platform-top-row-and-final-classified-land-cover-image-using-object-based-random-forest-model-bottom-row&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20classified_hu7fdbafbd30f744dcb729c0ae040dda66_763218_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Standard red, green, blue (RGB) image from each platform (top row) and final classified land cover image using object-based random forest model (bottom row).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20classified_hu7fdbafbd30f744dcb729c0ae040dda66_763218_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;743&#34; height=&#34;735&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Standard red, green, blue (RGB) image from each platform (top row) and final classified land cover image using object-based random forest model (bottom row).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;discussion&#34;&gt;Discussion&lt;/h2&gt;
+&lt;p&gt;Overall, the methods employed in this study produced reasonable land cover classification results and successfully generated a shapefile identifying Phragmites boundaries from an automated workflow. However, there were several limitations to this study that prevent strong conclusions from being drawn, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ground truth data was not available; therefore, training and validation data was derived through visual interpretation of high-resolution imagery.&lt;/li&gt;
+&lt;li&gt;Asynchronous images were assumed to be collected at the same time and the same set of training/validation data was used on images from all platforms.&lt;/li&gt;
+&lt;li&gt;Image resolution differences resulted in a large discrepancy between platforms in the number of pixels available to train and validate the random forest model (Figure 5; Table 3). This limits the validity of strictly using the objective metrics to assess classification performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-3-number-of-training-and-validation-pixels-for-each-imagery-platform&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20table3_hu5cd6ffd7aa652f6b2394b39d678673a7_7490_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 3. Number of training and validation pixels for each imagery platform.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20table3_hu5cd6ffd7aa652f6b2394b39d678673a7_7490_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;563&#34; height=&#34;103&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 3. Number of training and validation pixels for each imagery platform.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;With these in mind, the study could be improved if ground truth reference data was gathered with a random sampling strategy at the time image collection. This would limit temporal differences and remove subjectivity from the data collection process.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-example-trainingvalidation-polygon-red-outline-overlaid-on-rgb-imagery-from-each-platform-to-demonstrate-the-difference-in-the-number-pixels-available-for-training-and-validation-across-platforms&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20pixels_hu8fd81baac1ea2d7cee53b349d53601a6_124382_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 5. Example training/validation polygon (red outline) overlaid on RGB imagery from each platform to demonstrate the difference in the number pixels available for training and validation across platforms.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20pixels_hu8fd81baac1ea2d7cee53b349d53601a6_124382_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;580&#34; height=&#34;203&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Example training/validation polygon (red outline) overlaid on RGB imagery from each platform to demonstrate the difference in the number pixels available for training and validation across platforms.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;future-work&#34;&gt;Future Work&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Collect ground reference data at the time of image collection&lt;/li&gt;
+&lt;li&gt;Employ a 5-band multispectral sensor to gather high-resolution UAS imagery in red, green, blue, red-edge, and near infrared wavelengths&lt;/li&gt;
+&lt;li&gt;Experiment with the number of land covers used in the classification&lt;/li&gt;
+&lt;li&gt;Perform additional optimizations to the image segmentation and random forest algorithms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Additional details on all aspects of this project, including references and citations can be found in the  &lt;a href=&#34;https://eneemann.github.io/files/Phragmites%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Data Model and Structures&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (Python)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Geoprocessing with Python</title>
+      <link>https://eneemann.github.io/project/geoprocessing-with-python/</link>
+      <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/geoprocessing-with-python/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Python%20-%20Presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Python%20-%20Export.pdf&#34; target=&#34;_blank&#34;&gt;Script Output Example&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;objective&#34;&gt;Objective&lt;/h2&gt;
+&lt;p&gt;The objective of this project was to create a Python script tool that answers the question: “Who Taxes Me?” for residents of Utah. To accomplish this, a Python script was written to accept an input address from a user (and optional property value) and provide a simple map of the location/property, a listing of entities that levy taxes on the property, and the levy rate and amount. The listing includes the tax levy as a percentage or, optionally, as a dollar amount if a property value is provided. The data is also presented in bar graph form to visually represent which entities levy higher taxes. Finally, the script produces an automated map of the property location and tax levy information in PDF format.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-image-source-httpswwwdavegranlundcomcartoons20050123property-tax-bills&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20comic_huad0d85cb37b5aa1899116904b79fc905_224656_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Image source: &amp;lt;a href=&amp;#34;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&amp;#34;&amp;gt;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&amp;lt;/a&amp;gt;&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20comic_huad0d85cb37b5aa1899116904b79fc905_224656_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;564&#34; height=&#34;432&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Image source: &lt;a href=&#34;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&#34;&gt;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&lt;/a&gt;
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data-and-methods&#34;&gt;Data and Methods&lt;/h2&gt;
+&lt;p&gt;Data for this study was pulled from the Utah Automated Geographic Reference Center 
+&lt;a href=&#34;https://gis.utah.gov/data/economy/taxingareas/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(AGRC) web page&lt;/a&gt;, which has tax entity datasets available as shapefiles and geodatabase feature classes. The study area incorporates the entire state of Utah and the script works for any address located within the state. The Python code utilizes several different data structures and methods for completing the task, primarily employing the ArcPy module. Data structures include lists, dictionaries, and Pandas dataframes, while the spatial data format is an ESRI geodatabase and feature classes. An outline of the Python script workflow is outline in Figure 1.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-diagram-of-python-script-workflow&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20diagram_hu2e9c35a5b463200334962145fe87e575_120649_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 1. Diagram of Python script workflow&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20diagram_hu2e9c35a5b463200334962145fe87e575_120649_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1743&#34; height=&#34;908&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Diagram of Python script workflow
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The final results showing the script tool (Figure 2) a code snippet (Figure 3), and the exported PDF document (Figure 4) are shown below:&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-script-tool-interface-and-typical-processing-dialog-window-with-execution-time&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20inputs_huc974fce694d0577f1002a8c131679796_132225_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Script tool interface and typical processing dialog window with execution time.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20inputs_huc974fce694d0577f1002a8c131679796_132225_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;703&#34; height=&#34;516&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Script tool interface and typical processing dialog window with execution time.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-example-snippet-of-python-code&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20snippet_hu81e8343999e978ae98dcaab98e36a6e8_137261_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Example snippet of Python code.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20snippet_hu81e8343999e978ae98dcaab98e36a6e8_137261_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;512&#34; height=&#34;569&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Example snippet of Python code.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-example-pdf-exported-by-the-python-tool&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20pdf%20report_hua25fb07c5be305568a8e6a1fcd63edf1_479238_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Example PDF exported by the Python tool.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20pdf%20report_hua25fb07c5be305568a8e6a1fcd63edf1_479238_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;684&#34; height=&#34;906&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Example PDF exported by the Python tool.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;python-libraries&#34;&gt;Python Libraries&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ArcPy&lt;/li&gt;
+&lt;li&gt;Numpy&lt;/li&gt;
+&lt;li&gt;Pandas&lt;/li&gt;
+&lt;li&gt;Matplotlib&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (Python)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

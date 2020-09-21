@@ -1,0 +1,1535 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Erik Neemann">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Machine Learning Wildfire Analysis">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://eneemann.github.io/project/geocomputation/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://eneemann.github.io/project/geocomputation/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@Erik_AGRC">
+  <meta property="twitter:creator" content="@Erik_AGRC">
+  
+  <meta property="og:site_name" content="Neemann MSGIS">
+  <meta property="og:url" content="https://eneemann.github.io/project/geocomputation/">
+  <meta property="og:title" content="Geocomputation | Neemann MSGIS">
+  <meta property="og:description" content="Machine Learning Wildfire Analysis"><meta property="og:image" content="https://eneemann.github.io/project/geocomputation/featured.PNG">
+  <meta property="twitter:image" content="https://eneemann.github.io/project/geocomputation/featured.PNG"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2018-12-09T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2018-12-09T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eneemann.github.io/project/geocomputation/"
+  },
+  "headline": "Geocomputation",
+  
+  "image": [
+    "https://eneemann.github.io/project/geocomputation/featured.PNG"
+  ],
+  
+  "datePublished": "2018-12-09T00:00:00Z",
+  "dateModified": "2018-12-09T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Erik Neemann"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Neemann MSGIS",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Machine Learning Wildfire Analysis"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Geocomputation | Neemann MSGIS</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  
+  
+  
+    <script>window.staDarkLightChooser = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Neemann MSGIS</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Neemann MSGIS</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Geocomputation</h1>
+
+  
+  <p class="page-subtitle">Quantifying Wildfire Susceptibility in Utah Using an Artificial Neural Network</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 9, 2018
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 666px; max-height: 532px;">
+  <div style="position: relative">
+    <img src="/project/geocomputation/featured.PNG" alt="" class="featured-image">
+    <span class="article-header-caption">Architecture diagram of a typical neural network</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <ul>
+<li><strong><a href="/files/NeuralNet%20-%20Presentation.pdf" target="_blank">Slides</a></strong></li>
+<li><strong><a href="/files/NeuralNet%20-%20Full%20Report.pdf" target="_blank">Final Report</a></strong></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Wildfire is a common hazard faced by large regions in the western US due to the combination of vegetation/fuels, climate, topography, and ignition sources. In recent decades, with increases in population, communities and residential areas have continually expanded outward from urban centers. In the mountainous west, this expansion typically leads to additional development in the urban-wildland interface, thereby increasing the number of people exposed to the potential wildfire hazard. Identifying areas of wildfire susceptibility is important to ensure at-risk populations have emergency management plans and are able to mitigate fire risk as much as possible. The most effective method of identifying risk areas is producing maps by combining multiple wildfire parameters in a geographic information system (GIS). This study aims to quantify wildfire susceptibility in Utah and identify locations at greatest risk.</p>
+<p>A multi-layer perceptron (MLP) neural network (NN) was chosen as the model for this study due to the recent success of other research projects in implementing NNs to predict forest fire susceptibility (Satir et al., 2015; Bui et al., 2017). Neural Networks are a natural choice for analyzing fire potential because they are good at approximating complex functions, are able to capture both linear and nonlinear relationships that exist between predictors and dependent variables, and adaptively learn from training data (Kantardzic, 2011; Satir et al., 2015).</p>
+<h2 id="data">Data</h2>
+<p>All data used in this research came from free, publicly-available sources. The original data sets were initially gathered on disparate grids (different cell sizes, projections, dimensions, etc.) and were aligned to a uniform grid via projections in ESRI’s ArcMap software and with the use of ArcPy scripts. The data were also clipped down to the same geographic areas of interest (figure 1). This resulted in raster data sets with a Universal Transverse Mercator coordinate system in zone 12 North (UTM 12N). Each grid cell is 30 by 30 m with total dimensions of 2867 by 4251 pixels. The data was then resampled to a 90 by 90 m grid to alleviate computational challenges encountered on the full-resolution data.</p>
+<p>A snapshot of all data sets used in the NN model is shown in Figure 1, below. A description of each data set can be found in the following paragraphs.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-1-snapshot-of-the-data-used-in-the-neural-network">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20all%20data_hu656fba59b79c0aa86e005e62203cc9eb_1942934_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 1. Snapshot of the data used in the neural network.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20all%20data_hu656fba59b79c0aa86e005e62203cc9eb_1942934_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="1339" height="819">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 1. Snapshot of the data used in the neural network.
+  </figcaption>
+
+
+</figure>
+
+<p><em>Historical Fires</em></p>
+<ul>
+<li>Historical fire occurrence and burn severity data was collected from the Monitoring Trends in Burn Severity (MTBS) project. For this study, data from 2007-2016 was used to train the NN in order to place an emphasis on the most recent decade of fire data, which should best correspond with recent vegetation and infrastructure data. The ten annual data sets from 2007-2016 where then reclassified to only include burned areas (data value of 1-4), and summed up into a single data set. This resultant MTBS fire data set accounts for a combination of cumulative fire occurrences (multiple fires) and burn severities, called the historical fire index.</li>
+</ul>
+<p><em>Terrain</em></p>
+<ul>
+<li>The Digital Elevation Model (DEM) used in this study was downloaded from the Utah Wildfire Risk Assessment Portal (WRAP). Slope and aspect data sets were calculated from the DEM and used as inputs into the NN model. These three terrain-related data sets are important for the neural network model because each has an influence on wildfire and fire-related parameters.</li>
+</ul>
+<p><em>Vegetation</em></p>
+<ul>
+<li>Vegetation data sets were also gathered from the Utah WRAP, each on the same UTM 12N, 30 m grid as the DEM data. The vegetation type data set categorizes each grid cell into one of 19 different categories. The vegetation type information is important for identifying the type of biomass available for burning, where some vegetation types burn more readily than others due to their biophysical properties (Bui et al., 2017). Two additional vegetation data sets, canopy cover (%) and bulk canopy density (kg/m<sup>3</sup> * 100) are also included to help quantify the amount of biomass fuel that is available for burning on a grid cell.</li>
+</ul>
+<p><em>Infrastructure</em></p>
+<ul>
+<li>A statewide Utah roads data set was gathered from the Utah Automated Geographic Reference Center (AGRC). The vector road features were used to calculate a distance-to-roads raster layer using Euclidean distance, meaning the minimum distance from a pixel to a road is calculated “as the crow flies.” Distance to roads is employed as a mechanism to measure the anthropogenic influence on wildfires and relates to the potential cause of wildfires (Satir et al., 2015; Bui et al., 2017).</li>
+</ul>
+<p><em>Climate</em></p>
+<ul>
+<li>Climate data for this study was collected from Oregon State’s PRISM Climate Group. Monthly 30-year normal temperature and precipitation data sets were downloaded with 800 m grid cells. Only data from the months of June through October were used, representing the primary fire season in Utah. The monthly climate data sets, for both temperature and precipitation, were averaged into a single data set representing the mean conditions for the entire fire season. These data were resampled to 30 m grid cells with cubic interpolation.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<p><em>Data Preprocessing</em></p>
+<p>In order to prepare the data for input into the neural network model, several preprocessing steps were necessary. First, the data was scaled with a max-min normalization to place each data set between a range of 0 to 1. This was needed to ensure that the scale variations among the different data sets didn’t lead one or two variables to overwhelm the training process and contaminate the results.</p>
+<p>The historical fire severity MTBS data, used for training the NN, was thinned in order to improve the training process. The vast majority of the area of interest is comprised of pixels that have not been burned (~98%), but it was desirable to have better balance among burned and unburned pixels in the training data set. For this reason, a subset of the entire AOI was used for training, where polygons around the burned areas where chosen to provide a more balanced mix of burned/unburned pixels (black polygons in figure 2). This also improved the efficiency of training the NN, as data set used for training was about 10% of the original size.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-2-historical-fire-severity-data-used-to-train-neural-network">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20training%20data_hu22d799954f9642f22a4cdb9d298a48bc_827087_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 2. Historical fire severity data used to train neural network.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20training%20data_hu22d799954f9642f22a4cdb9d298a48bc_827087_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="659" height="746">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 2. Historical fire severity data used to train neural network.
+  </figcaption>
+
+
+</figure>
+
+<p><em>Artificial Neural Network</em></p>
+<p>The R statistical language was used to implement the NN using RStudio software, specifically with the ‘neuralnet’ library. A forward-feed MLP NN was employed with a resilient backpropagation learning algorithm. The network was “fully-connected,” meaning that every neuron in a layer was connected to every neuron in adjacent layers. The final NN architecture including 15 hidden layers and 1 output node, representing fire susceptibility. In addition to building a NN model with the full complement of input data sets, a second model was generated without the vegetation type data. This was done to examine the influence of vegetation type and its effect on the results. Other than the removal of the vegetation type categories, there were no other differences between the models. This model will hereafter be referred to a “NVT.”</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-table-1-final-categorization-of-fire-susceptibility-model">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20fire%20suscep%20table_hu586cf38722b3e238680593525ef779bd_13518_2000x2000_fit_lanczos_2.PNG" data-caption="Table 1. Final categorization of fire susceptibility model.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20fire%20suscep%20table_hu586cf38722b3e238680593525ef779bd_13518_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="478" height="206">
+</a>
+
+
+  
+  
+  <figcaption>
+    Table 1. Final categorization of fire susceptibility model.
+  </figcaption>
+
+
+</figure>
+
+<p>Finally, the output of each model was normalized with a min-max normalization method to put the Fire Susceptibility Index on a 0-1 scale. The results from each model were then categorized into 6 fire susceptibility groups with a natural breaks methodology. However, because the categories from the Original and NVT models were very similar, the final categorization for each model was standardized based on table 1. This created a consistent symbology for generating fire susceptibility maps and allowed for a more direct comparison between the two models.  A diagram showing the final architecture of the NVT model is shown in figure 3.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-3-final-neural-network-architecture-and-weights-for-the-no-vegetation-type-nvt-model">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20diagram_hu6cda6e5248879d9605d31148466bbdd1_286365_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 3. Final neural network architecture and weights for the No Vegetation Type (NVT) model.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20diagram_hu6cda6e5248879d9605d31148466bbdd1_286365_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="740" height="686">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 3. Final neural network architecture and weights for the No Vegetation Type (NVT) model.
+  </figcaption>
+
+
+</figure>
+
+<h2 id="results">Results</h2>
+<p>The output from each of the NN models showed results with many similarities and some notable differences. Both models had a strong histogram peak centered on 0.55 (not shown), but the distribution of values around that peak varies. In the Original model, the vast majority of pixels were placed between 0.4 and 0.8, with a narrower distribution and shorter tails. The NVT model, however, had a wider distribution and longer tails, with a generally broader range between 0.2 and 0.85. This indicates that the Original model has many more values scoring in the middle of the range, while the NVT model’s larger range has more pixels assessed with “very low” or “extreme” values. Visually, this is depicted in figure 4, which displays a map of the Wasatch Front region with the Fire Susceptibility Index calculated for each pixel. Compared to the Original Model, the NVT model has more values in the “extreme” category for high-threat areas such as Antelope Island in the Great Salt Lake, the northern Oquirrh Mountains, the Lake Mountains, and the mountain range south of Utah Lake. The NVT model also has a larger quantity of “very low” pixels along the high peaks of the Wasatch Front and Oquirrh Mountains.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-4-fire-susceptibility-index-from-the-original-and-nvt-models-with-census-tracts-outlined-in-black">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20maps_hu81f9ae02bb9c704784063ca68b3dfc2c_435562_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 4. Fire Susceptibility Index from the Original and NVT models with census tracts outlined in black.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20maps_hu81f9ae02bb9c704784063ca68b3dfc2c_435562_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="1247" height="782">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 4. Fire Susceptibility Index from the Original and NVT models with census tracts outlined in black.
+  </figcaption>
+
+
+</figure>
+
+<p>Another notable difference between the models is the apparent influence of the vegetation type variable in the Original model and its lack of influence in the NVT model (where it was removed). The Original model has a generally noisier appearance, reflective of the noisy nature of the vegetation type variable, whereas the NVT model has smoother, more gradual transitions from low to high index values. The Original model also highlights the area between Salt Lake International Airport and the Great Salt Lake with “very high” and “extreme” index values, while the NVT model shows “very low” to “moderate” values. Here, the Original model appears to be picking up on increased fire susceptibility from the shrubland and chaparral vegetation types. The NVT model also tends to be more strongly influenced by elevation and aspect in mountainous regions, whereas the Original model is strongly influenced by vegetation type.</p>
+<p>The influence of vegetation type is further examined by plotting variable importance based on NN connection weights from each model, as seen in figure 5. Indeed, the 10 most important variables in the Original model are vegetation types, which also make up 15 of the 18 most important variables. The top non-vegetation variables include elevation, precipitation, and distance to roads. For the NVT model, the top 3 variables are precipitation, elevation, and distance to roads. This comparison shows the importance of the vegetation type variables in the Original model, perhaps even indicating that it is over-influencing results.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-5-variable-importance-plots-for-original-and-nvt-models">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20variable%20import_hue98367a9209906c53f8b9db7635fee08_61967_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 5. Variable importance plots for Original and NVT models.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20variable%20import_hue98367a9209906c53f8b9db7635fee08_61967_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="1162" height="608">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 5. Variable importance plots for Original and NVT models.
+  </figcaption>
+
+
+</figure>
+
+<p>A final, quantitative comparison of the Original and NVT models is presented in table 2. Mean squared error (MSE) and mean absolute error (MAE) metrics are calculated for each model using the subset of validation data from training the NN models. These metrics both indicate that the NVT model performs better as its errors are roughly half of the Original model’s error. The area under the curve (AUC) metric for the receiver operating characteristic (ROC) curve was also calculated for each model. This value accounts for a balance between true positive rate and false positive rate when using a broad range of thresholds to classify model results. The AUC metric indicates that the Original model (0.8875) outperformed the NVT model (0.8127) as the Original model had a higher value and was closer to the perfect score of one. These two sets of metrics (errors and AUC) show conflicting results without a clear winner on which model performs best. It should also be noted that these metrics only consider about 3% of all pixels in the study area, those used for validation of the training data.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-table-2-quantitative-results-comparing-original-and-nvt-models-mean-squared-error-mean-absolute-error-and-receiver-operating-characteristic-area-under-the-curve-calculated-from-the-validation-data-subset">
+
+
+  <a data-fancybox="" href="/project/geocomputation/NeuralNet%20metrics_hu811fc955c48ca94ca83dc3b46576de37_52031_2000x2000_fit_lanczos_2.PNG" data-caption="Table 2. Quantitative results comparing Original and NVT models. Mean Squared Error, Mean Absolute Error, and Receiver Operating Characteristic Area Under the Curve calculated from the validation data subset.">
+
+
+  <img data-src="/project/geocomputation/NeuralNet%20metrics_hu811fc955c48ca94ca83dc3b46576de37_52031_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="805" height="146">
+</a>
+
+
+  
+  
+  <figcaption>
+    Table 2. Quantitative results comparing Original and NVT models. Mean Squared Error, Mean Absolute Error, and Receiver Operating Characteristic Area Under the Curve calculated from the validation data subset.
+  </figcaption>
+
+
+</figure>
+
+<h2 id="conclusions">Conclusions</h2>
+<p>Overall, this study demonstrates that the NN methodology produced reasonable results in quantifying wildfire susceptibility along Utah’s Wasatch Front. Particularly, it shows that vegetation type may play a prominent role in estimating wildfire susceptibility, as was noted by the model differences between the Original an NVT models. The inclusion of vegetation type often produced noisier results, reflecting the noisy nature of the vegetation type data itself. It also demonstrated local maxima that appeared to be directly tied to the presence of specific vegetation types (e.g., grassland, exotic herb, and chaparral). A comparison of variable importance from the Original and NVT models showed that vegetation type dominated the top 18 variables in the Original model (Figure X). This reliance on vegetation type may have actually been to the detriment of the model and other methods of employing vegetation information may improve results. The removal of vegetation type in the NVT model allowed other variables to dominate the model results, often varying by geographic location (e.g., elevation, aspect).</p>
+<p>Areas with low fire susceptibility were often characterized by the presence of water, location near urban centers, or at very high elevations. Higher fire susceptibility regions tended to exist at moderate elevations and included the presence of specific vegetation types (e.g., grassland, chaparral) in the Original model. The NVT model tended to have a larger range in fire susceptibility values, with the greatest number of pixels in the “very low” and “extreme” categories.</p>
+<p><strong>Additional details on all aspects of this project, along with references and citations can be found in the  <a href="/files/NeuralNet%20-%20Full%20Report.pdf" target="_blank">Full Report</a>.</strong></p>
+<h2 id="msgis-program-skills">MSGIS Program Skills</h2>
+<ul>
+<li>GIS Analysis</li>
+<li>Spatial Data and Algorithms</li>
+<li>GIS Workflow</li>
+<li>Model Building</li>
+<li>Cartography and Graphic Design</li>
+<li>Spatial Analysis</li>
+<li>Data Model and Structures</li>
+<li>Database Design</li>
+<li>Project Design</li>
+<li>Project Management</li>
+<li>Communication Skills</li>
+<li>Scripting (R and Python)</li>
+</ul>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/gis-analysis/">GIS Analysis</a>
+  
+  <a class="badge badge-light" href="/tag/gis-workflow/">GIS Workflow</a>
+  
+  <a class="badge badge-light" href="/tag/spatial-algorithms/">Spatial Algorithms</a>
+  
+  <a class="badge badge-light" href="/tag/model-building/">Model Building</a>
+  
+  <a class="badge badge-light" href="/tag/project-design/">Project Design</a>
+  
+  <a class="badge badge-light" href="/tag/project-management/">Project Management</a>
+  
+  <a class="badge badge-light" href="/tag/communication/">Communication</a>
+  
+  <a class="badge badge-light" href="/tag/cartography/">Cartography</a>
+  
+  <a class="badge badge-light" href="/tag/spatial-analysis/">Spatial Analysis</a>
+  
+  <a class="badge badge-light" href="/tag/data-models/">Data Models</a>
+  
+  <a class="badge badge-light" href="/tag/database-design/">Database Design</a>
+  
+  <a class="badge badge-light" href="/tag/scripting/">Scripting</a>
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">Machine Learning</a>
+  
+  <a class="badge badge-light" href="/tag/r/">R</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://eneemann.github.io/project/geocomputation/&amp;text=Geocomputation" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://eneemann.github.io/project/geocomputation/&amp;t=Geocomputation" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Geocomputation&amp;body=https://eneemann.github.io/project/geocomputation/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://eneemann.github.io/project/geocomputation/&amp;title=Geocomputation" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://eneemann.github.io/project/geocomputation/&amp;title=Geocomputation" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/erik-neemann/avatar_hu7959ef427b90abd110d7e2555125f096_1185389_270x270_fill_q90_lanczos_center.jpg" alt="Erik Neemann">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://eneemann.github.io/">Erik Neemann</a></h5>
+        <h6 class="card-subtitle">GIS Analyst</h6>
+        <p class="card-text">I&rsquo;m interested in solving spatial problems with Python tools.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:erikneemann@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/erikneemann/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/eneemann" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/Erik_AGRC" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/capstone/">Capstone</a></li>
+      
+      <li><a href="/project/spatial-modeling/">Spatial Modeling</a></li>
+      
+      <li><a href="/project/advanced-geographic-data-analysis/">Advanced Geographic Data Analysis</a></li>
+      
+      <li><a href="/project/remote-sensing-analysis/">Remote Sensing Analysis</a></li>
+      
+      <li><a href="/project/geoprocessing-with-python/">Geoprocessing with Python</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

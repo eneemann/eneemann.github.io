@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL | Neemann MSGIS</title>
+    <link>https://eneemann.github.io/tag/sql/</link>
+      <atom:link href="https://eneemann.github.io/tag/sql/index.xml" rel="self" type="application/rss+xml" />
+    <description>SQL</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 04 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_512x512_fill_lanczos_center_2.png</url>
+      <title>SQL</title>
+      <link>https://eneemann.github.io/tag/sql/</link>
+    </image>
+    
+    <item>
+      <title>Spatial Database Design</title>
+      <link>https://eneemann.github.io/project/spatial-data-design/</link>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/spatial-data-design/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Recreation%20Database%20Slides.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Recreation%20Final%20Report%20w%20Figures.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This project presents a statewide recreation database for Utah. The database gathers many recreational datasets in one place for Utahns to explore and use to plan trips or activities. A variety of data related to hiking, camping, skiing, canyoneering, swimming/boating, golfing, and parks/wilderness are included. The data are associated through relationship classes (where appropriate), to help query and make sense of inherent connections. Some example queries the database helps to answer include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What trailheads provide access to Goblin Valley’s Dark Side of the Moon trail?&lt;/li&gt;
+&lt;li&gt;How many ski lifts are in the ski resort containing “Chips Run?”&lt;/li&gt;
+&lt;li&gt;What boat ramps provide access to Lake Powell?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With a wide variety of functionality, users are able to use the database to find the necessary trailhead for their desired hiking route (Figure 1) or determine what runs and lifts are available to them at a ski resort. Users can also determine what boat ramps provide access to a specific lake or river, identify which campgrounds in Washington County have more than 50 campsites, and see what Utah peaks are higher than 13,000 feet above sea level. This represents just a small sampling of information that the database can provide.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-snapshot-of-layers-in-the-utah-recreation-database&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20overview_hu5aab339e35d2bdcffe083bf993c0fa1b_1572204_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 1. Snapshot of layers in the Utah Recreation Database&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20overview_hu5aab339e35d2bdcffe083bf993c0fa1b_1572204_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1032&#34; height=&#34;649&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Snapshot of layers in the Utah Recreation Database
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;conceptual-model&#34;&gt;Conceptual Model&lt;/h2&gt;
+&lt;p&gt;A conceptual Entity-Relationship diagram was created based on the integrity constraints for the project (Figure 2). In this diagram, each dataset is represented by a rectangular entity, and the relationships between entities are represented by diamonds. The ovals depict attributes belonging to each of the entities. Most of the relationships are one-to-many, meaning one entity connects to many other entities through the relationship (e.g., one ski resort contains many ski runs and ski lifts). The exception to this is the many-to-many relationships between trailheads, trail segments, and trail routes (e.g., several trailheads can initiate one route and several routes can begin at one trailhead).&lt;/p&gt;
+&lt;p&gt;The double lines connecting some entities to a relationship indicate that the specific entity is required to participate in the relationship. For example a ski lift must be within a ski resort, and a boat ramp must be adjacent to a river or lake. The third mandatory participation constraint is for the disjoint subtype of parks. This means that parks must either be local, state, or national parks, but they can only be in one of those three categories. Finally, among the attributes of each entity, the underlined attribute is the unique identifier for the entity that links allows it to be linked to other entities through the relationships.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-conceptual-model-entity-relationship-diagram&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20conceptual%20model_hu2b4ee80fe6fbe406420655882c319f77_147130_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Conceptual Model: Entity-Relationship Diagram&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20conceptual%20model_hu2b4ee80fe6fbe406420655882c319f77_147130_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1523&#34; height=&#34;1254&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Conceptual Model: Entity-Relationship Diagram
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;logical-model&#34;&gt;Logical Model&lt;/h2&gt;
+&lt;p&gt;The conceptual Entity-Relationship diagram was translated into a logical Relational Model diagram (Figure 3).  In this process, primary and foreign keys were specified for each relation (entity) and many-to-many relationships were connected through the creation of an additional relation.  Further, domains where added for each attribute, to include data type and length constraints.  Three many-to-many relationships exist in the Utah Recreation Database, so relations were added for each.  An “Initiation” relation was added between both Trailheads and Trail Routes and between Trailheads and Trail Segments.  A “Connection” relation was also added between Trail Segments and Trail Routes.  For the Boat Ramp relation, the “Water_body” attribute is used as the foreign key to both the Lake and River relations to connect Boat Ramps to appropriate water bodies.  Finally, the Park supertype relation is linked to the “Local_Park,” “State_Park,” and “National_Park” subtype relations, where each park ID is both a foreign key and primary key.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-logical-model-relational-model-diagram&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20logical%20model_hu17fa2ba8a1b5ea36287688601c6069b4_136528_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 3. Logical Model: Relational Model Diagram&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20logical%20model_hu17fa2ba8a1b5ea36287688601c6069b4_136528_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1582&#34; height=&#34;1452&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Logical Model: Relational Model Diagram
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;physical-model&#34;&gt;Physical Model&lt;/h2&gt;
+&lt;p&gt;To translate the logical relational model into a physical model, a geodatabase was created and populated in ArcCatalog (Figure 4). A feature class was imported or created for each dataset and relationship classes were created to link feature classes together, where appropriate. Several of the relationship classes were simple, one-to-many relationships placing the feature within the state. However, a few required more careful design. The many-to-many relationships among trailheads, trail segments, and trail routes were created by selecting appropriate features and adding them to the associated relationship class’s table. Additionally, boat ramps were linked to their adjacent rivers and lakes through relationship classes and ski lifts and ski runs were connected to their parent ski resorts. In its completed form, the geodatabase provides a coherency to the data that enables additional functionality as described below.&lt;/p&gt;
+&lt;p&gt;After putting the recreation database together, new functions are now available that weren’t possible when the datasets were disparate. This can be demonstrated by answering the questions in the introduction. In ArcMap, the trailheads leading to Goblin Valley’s “Dark Side of the Moon” trail can be identified by selecting the trail and finding its associated trailheads by clicking on the “TH_to_Routes” relationship class. By selecting “Chip’s Run” from the ski runs dataset and clicking on the “SkiResort_SkiRuns” relationship class, Snowbird is identified as the resort. Snowbird’s attributes note that it contains 11 ski lifts. Lastly, Lake Powell’s boat ramps can be found by selecting the lake and using the “Lakes_BoatRamps” relationship class. All of these functions, and many more, can now be executed quickly and easily to interrogate the database to meet a user’s needs.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-physical-model-esri-file-geodatabase&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20physical%20model_hu33509053b7f3a687ec6f882c54f13d3b_116258_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 4. Physical Model: ESRI File Geodatabase&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-data-design/Recreation%20physical%20model_hu33509053b7f3a687ec6f882c54f13d3b_116258_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;707&#34; height=&#34;1036&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Physical Model: ESRI File Geodatabase
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;future-work&#34;&gt;Future Work&lt;/h2&gt;
+&lt;p&gt;While this database ended up relatively complete, there are several improvements that could be made in the future. Most of the datasets were gathered from open sources (listed in the report), resulting in inconsistent or minimal attributes. For example, it would be informative to have starting elevation, ending elevation, and vertical gain data for the ski runs, trail routes, etc. Additional attribute improvements or geometry changes would also lead to a better overall database (e.g., slot canyons represented as line segments). In some cases, the data were trimmed into subsets to make it more manageable (only ski runs in Snowbird were used, trail segments/routes were clipped to the San Rafael Swell/Goblin Valley region), so including more complete data would provide a better product. Finally, adding datasets for more recreation options would also produce a more comprehensive database (rock climbing locations, whitewater rafting/kayaking areas, etc.).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A complete accounting of datasets, business rules, and references can be found in the &lt;a href=&#34;https://eneemann.github.io/files/Recreation%20Final%20Report%20w%20Figures.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Data Models and Structures&lt;/li&gt;
+&lt;li&gt;Database Design&lt;/li&gt;
+&lt;li&gt;Structured Query Language (SQL)&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Project Management</title>
+      <link>https://eneemann.github.io/project/project-management/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/project-management/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Rose%20Park%20-%20Presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Rose%20Park%20-%20Final%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;The goal of this course was to come up with an original project that could be used to demonstrate an end-to-end project management lifecycle, to include producing many of the project artifacts, without actually executing the project. In this case, producing a GIS database and mobile application for Salt Lake City’s Rose Park Golf Course was chosen to fulfill this goal. The project work emphasizes the Project Management Body of Knowledge’s ten knowledge areas, with specific focus on Scope, Time, Cost, Quality, Risk, and Procurement Management.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-schematic-of-rose-park-golf-course-gis-database&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/schematic_hu260a874d37b8c42167c76730d81c376c_303712_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Schematic of Rose Park Golf Course GIS database&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/schematic_hu260a874d37b8c42167c76730d81c376c_303712_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;629&#34; height=&#34;276&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Schematic of Rose Park Golf Course GIS database
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The Salt Lake City Municipal Golf Course system aims to provide an excellent recreation option and golfing experience to citizens, while maintaining a profitable or financially solvent enterprise. However, Salt Lake City’s municipal golf courses have been plagued by financial issues over the last several years due to a variety of factors, including: decreased golf rounds played, uncooperative weather, water costs, and land lease problems (Piper, 2017a). This has resulted in the closure of two golf courses (Jordan River Par 3 and Wingpointe; McKellar, 2015), and the transfer of Rose Park from the Golf Enterprise Fund to the General Fund of Salt Lake City’s budget (Mayor’s Proposed Budget, 2017). Rose Park was removed from the Golf Enterprise Fund because it operated at a net loss of $1.4 Million over the last 10-year period of complete data (2005-2014; Rowland, 2017). The Golf Enterprise Fund is intended to be a self-contained and self-sustaining city-run business venture where golf course profits are re-invested for course improvements. Just a few years ago it operated eight golf courses, but it now operates only five. Rose Park’s move to the General Fund by Mayor Biskupski essentially marks it as a taxpayer-funded course in order to preserve it as a desirable green space and community asset in the broader northwest Salt Lake City recreation area (Piper, 2017b). The move also protects the Golf Enterprise Fund from having to make up for Rose Park’s losses, increasing its own likelihood of success.&lt;/p&gt;
+&lt;p&gt;Rose Park’s financial struggles have presented Salt Lake City with an opportunity for it to return to profitability through the implementation of innovative solutions. The goal of this project is to implement a detailed GIS database and develop a mobile application to exploit the GIS data for financial benefit. The mobile app will have three primary functions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Golf Course Maintenance: This function will improve the efficiency of resource consumption for golf course and turf maintenance. It will include modules to estimate and predict the needs of water, seed, fertilizer, pesticide/herbicide, etc.&lt;/li&gt;
+&lt;li&gt;Golf Course Management: This function will provide services for golfers, including tee time reservations, snack bar menu navigation, and food purchases. The course will also be able to manage and implement advertising within the application to promote local businesses and increase course revenue.&lt;/li&gt;
+&lt;li&gt;Golfer GPS: This function will help improve the golf experience by exposing the GIS database for detailed distances to course features in a manner unlike any other golf apps on the market. It will help improve the golf experience and pace of play, leading to an increase in golf rounds played each year.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-list-of-project-management-artifacts-and-deliverables&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20final%20docs%20table_hu67fb4facf3217aef9d4cec44930dbfe5_137179_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 1. List of Project Management artifacts and deliverables&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20final%20docs%20table_hu67fb4facf3217aef9d4cec44930dbfe5_137179_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;772&#34; height=&#34;453&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. List of Project Management artifacts and deliverables
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;In turn, this project will help spur cost savings, increase the number of golfers at Rose Park, and increase profits by adding a new revenue stream through in-app advertising. If successful, this project will restore Rose Park’s financial stability, allowing it to return to the Golf Enterprise Fund with a positive impact. Additional details on the project, artifacts, and deliverables (Figure 2) can be found in the full project report and documentation. A few of these artifacts have been selected for discussion below.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-timeline-for-the-rose-park-gis-database--mobile-application-project&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20timeline_hu647c9bed5e8f4c806492ddf8428eb797_36969_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Timeline for the Rose Park GIS Database &amp;amp;amp; Mobile Application project&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20timeline_hu647c9bed5e8f4c806492ddf8428eb797_36969_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;2336&#34; height=&#34;278&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Timeline for the Rose Park GIS Database &amp;amp; Mobile Application project
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;scope-management&#34;&gt;Scope Management&lt;/h2&gt;
+&lt;p&gt;The Rose park project will need to be completed on a precise timeline in order for the benefits to be realized at the start of the 2018 spring golf season. For this reason, scope management is critical to ensure that the work focuses on the agreed upon requirements and stakeholder needs. The documents below help define and control what work will be included in the project.&lt;/p&gt;
+&lt;p&gt;Broad requirements outlining the scope of the project are listed below:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Build comprehensive GIS database with features representing tees, greens, fairways, bunkers, water hazards, and other golf course infrastructure items.&lt;/li&gt;
+&lt;li&gt;Provide enough attributes in the GIS database to improve the golf experience and course maintenance operations.&lt;/li&gt;
+&lt;li&gt;Develop a mobile app with two primary interfaces:
+&lt;ul&gt;
+&lt;li&gt;Staff interface for course maintenance and golf management functions&lt;/li&gt;
+&lt;li&gt;Public interface for golfers to access GPS distances and snack bar features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Mobile app capability for in-app advertising to increase revenue&lt;/li&gt;
+&lt;li&gt;Mobile app capability for food/drink menu editing, viewing, and purchasing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Business Case Financials&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As an attachment to the business case, the financials spreadsheet goes into detail on how the costs and benefits were estimated and how they are distributed over time, including discounted costs. This ultimately results in the calculation of ROI and NPV, as well as the payback period. Each of these elements are important in making a decision on whether or not to pursue a project. The calculation of numbers in the business case financials is further detailed in the cost estimate and benefit estimate spreadsheets attached to the final report.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-business-case-financial-analysis&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20business%20case%20financials_hu4102c56cde3fe0a4cb3a2dd652d40f87_53435_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 3. Business case financial analysis&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20business%20case%20financials_hu4102c56cde3fe0a4cb3a2dd652d40f87_53435_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;798&#34; height=&#34;674&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Business case financial analysis
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;time-management&#34;&gt;Time Management&lt;/h2&gt;
+&lt;p&gt;Along with scope management, time management is the other key aspect to ensure the Rose Park project is completed on time.  The documents below were developed to provide tracking and a solid plan for the project schedule.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gantt Chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A Gantt chart was created from the WBS described in the full report using MS Project and relied on the aforementioned dependencies and resources (shown on the chart) for auto-scheduling.  It also displays summary tasks and identifies project milestones as red diamonds.  The Gantt chart will be updated as the project progresses, using MS Project’s tracking functions.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-gantt-chart-showing-projects-tasks-and-timeline&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20Gantt%20Chart_hu6345525092bb379e78b540da78366a1c_397338_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 4. Gantt chart showing projects tasks and timeline&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20Gantt%20Chart_hu6345525092bb379e78b540da78366a1c_397338_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;2576&#34; height=&#34;1696&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Gantt chart showing projects tasks and timeline
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;quality-management&#34;&gt;Quality Management&lt;/h2&gt;
+&lt;p&gt;A high quality mobile app is needed to provide the services required by the management/maintenance staffs and to compete with commercial GPS golf apps.  In order manage quality for the Rose Park project, stakeholder involvement will be relied on to provide quality assurance through multiple stakeholder acceptance instances and extensive user acceptance testing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quality Management/Testing Process&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The quality management and testing process flow chart describes the quality assurance/testing components in detail.  Using Agile concepts, stakeholders will be involved from start to finish in the software development phase.  This will begin with requirements definition and prototype acceptance and continue with several “gates” of stakeholder acceptance.  Each sprint will have an iterative process of unit-level and integration testing, followed by bug fixes, and ending with a sprint demo and stakeholder acceptance.  Software development will then be concluded with system-wide testing and stakeholder-driven user acceptance testing.  The GIS database development is more straightforward and has a simpler quality management process.  This will primarily consist of peer review among the GIS technicians, employing cause and effect diagrams when issues develop, and unit and integration testing for each database component.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-quality-management-and-testing-process-for-mobile-application-and-gis-database&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20quality%20mgmt_hu248c6948e67fff7683576d7eae6e07fb_83179_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 5. Quality management and testing process for mobile application and GIS database&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20quality%20mgmt_hu248c6948e67fff7683576d7eae6e07fb_83179_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1531&#34; height=&#34;623&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Quality management and testing process for mobile application and GIS database
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;risk-management&#34;&gt;Risk Management&lt;/h2&gt;
+&lt;p&gt;With the previous financial struggles of Rose Park and thin margins in the overall golf course industry, project failure would be catastrophic for the course.  To combat these perils, risk will be mitigated with the use of a risk register and probability/impact matrix, and updated frequently during bi-weekly risk review meetings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Risk Register&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The risk register identifies several of the project’s biggest risks, along with a description, category, root cause, triggers, potential responses, and the risk owner for each.  A probability and impact are also defined that, in conjunction with the risk matrix (not shown), help highlight risks that need to be monitored most closely.  These risks are colored and ranked by their total risk score and ordered accordingly in the register.  Those at the top pose the greatest threat.  As situations change throughout the project, the risk register and statuses will be updated during the risk review meetings.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-6-risk-register&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20risk%20register_hue87a1f4431803baa0c2a0da4958d6b44_342213_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 6. Risk register&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/project-management/Rose%20Park%20risk%20register_hue87a1f4431803baa0c2a0da4958d6b44_342213_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1744&#34; height=&#34;1282&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 6. Risk register
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Recent struggles encountered by Salt Lake City golf courses have provided an opportunity for innovative solutions to improve profitability.  The Rose Park GIS database and mobile application proposed here describe a path forward to return the city’s most troubled course to financial stability.  This project has the support of the Mayor, an interested and enthusiastic set of stakeholders, a realistic plan, and resources available to execute the plan.  The time has come to leverage data and technology to increase efficiency and profits for Rose Park.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;All references and project artifacts can be found in the &lt;a href=&#34;https://eneemann.github.io/files/Rose%20Park%20-%20Final%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt; and attachments.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Data Model and Structures&lt;/li&gt;
+&lt;li&gt;Database Design&lt;/li&gt;
+&lt;li&gt;Structured Query Language (SQL)&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

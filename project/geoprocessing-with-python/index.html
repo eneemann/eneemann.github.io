@@ -1,0 +1,1405 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Erik Neemann">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Python Scripting">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://eneemann.github.io/project/geoprocessing-with-python/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://eneemann.github.io/project/geoprocessing-with-python/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@Erik_AGRC">
+  <meta property="twitter:creator" content="@Erik_AGRC">
+  
+  <meta property="og:site_name" content="Neemann MSGIS">
+  <meta property="og:url" content="https://eneemann.github.io/project/geoprocessing-with-python/">
+  <meta property="og:title" content="Geoprocessing with Python | Neemann MSGIS">
+  <meta property="og:description" content="Python Scripting"><meta property="og:image" content="https://eneemann.github.io/project/geoprocessing-with-python/featured.PNG">
+  <meta property="twitter:image" content="https://eneemann.github.io/project/geoprocessing-with-python/featured.PNG"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2018-12-03T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2018-12-03T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eneemann.github.io/project/geoprocessing-with-python/"
+  },
+  "headline": "Geoprocessing with Python",
+  
+  "image": [
+    "https://eneemann.github.io/project/geoprocessing-with-python/featured.PNG"
+  ],
+  
+  "datePublished": "2018-12-03T00:00:00Z",
+  "dateModified": "2018-12-03T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Erik Neemann"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Neemann MSGIS",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Python Scripting"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Geoprocessing with Python | Neemann MSGIS</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  
+  
+  
+    <script>window.staDarkLightChooser = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Neemann MSGIS</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Neemann MSGIS</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Geoprocessing with Python</h1>
+
+  
+  <p class="page-subtitle">Who Taxes Me?</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 3, 2018
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 536px;">
+  <div style="position: relative">
+    <img src="/project/geoprocessing-with-python/featured_hu0c07a65f5da94a8067d847fc6988fb7f_147715_720x0_resize_lanczos_2.PNG" alt="" class="featured-image">
+    <span class="article-header-caption">Snapshot of Python Code</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <ul>
+<li><strong><a href="/files/Python%20-%20Presentation.pdf" target="_blank">Slides</a></strong></li>
+<li><strong><a href="/files/Python%20-%20Export.pdf" target="_blank">Script Output Example</a></strong></li>
+</ul>
+<h2 id="objective">Objective</h2>
+<p>The objective of this project was to create a Python script tool that answers the question: “Who Taxes Me?” for residents of Utah. To accomplish this, a Python script was written to accept an input address from a user (and optional property value) and provide a simple map of the location/property, a listing of entities that levy taxes on the property, and the levy rate and amount. The listing includes the tax levy as a percentage or, optionally, as a dollar amount if a property value is provided. The data is also presented in bar graph form to visually represent which entities levy higher taxes. Finally, the script produces an automated map of the property location and tax levy information in PDF format.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-image-source-httpswwwdavegranlundcomcartoons20050123property-tax-bills">
+
+
+  <a data-fancybox="" href="/project/geoprocessing-with-python/Python%20comic_huad0d85cb37b5aa1899116904b79fc905_224656_2000x2000_fit_lanczos_2.PNG" data-caption="Image source: &lt;a href=&#34;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&#34;&gt;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&lt;/a&gt;">
+
+
+  <img data-src="/project/geoprocessing-with-python/Python%20comic_huad0d85cb37b5aa1899116904b79fc905_224656_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="564" height="432">
+</a>
+
+
+  
+  
+  <figcaption>
+    Image source: <a href="https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/">https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/</a>
+  </figcaption>
+
+
+</figure>
+
+<h2 id="data-and-methods">Data and Methods</h2>
+<p>Data for this study was pulled from the Utah Automated Geographic Reference Center 
+<a href="https://gis.utah.gov/data/economy/taxingareas/" target="_blank" rel="noopener">(AGRC) web page</a>, which has tax entity datasets available as shapefiles and geodatabase feature classes. The study area incorporates the entire state of Utah and the script works for any address located within the state. The Python code utilizes several different data structures and methods for completing the task, primarily employing the ArcPy module. Data structures include lists, dictionaries, and Pandas dataframes, while the spatial data format is an ESRI geodatabase and feature classes. An outline of the Python script workflow is outline in Figure 1.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-1-diagram-of-python-script-workflow">
+
+
+  <a data-fancybox="" href="/project/geoprocessing-with-python/Python%20diagram_hu2e9c35a5b463200334962145fe87e575_120649_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 1. Diagram of Python script workflow">
+
+
+  <img data-src="/project/geoprocessing-with-python/Python%20diagram_hu2e9c35a5b463200334962145fe87e575_120649_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="1743" height="908">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 1. Diagram of Python script workflow
+  </figcaption>
+
+
+</figure>
+
+<h2 id="results">Results</h2>
+<p>The final results showing the script tool (Figure 2) a code snippet (Figure 3), and the exported PDF document (Figure 4) are shown below:</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-2-script-tool-interface-and-typical-processing-dialog-window-with-execution-time">
+
+
+  <a data-fancybox="" href="/project/geoprocessing-with-python/Python%20inputs_huc974fce694d0577f1002a8c131679796_132225_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 2. Script tool interface and typical processing dialog window with execution time.">
+
+
+  <img data-src="/project/geoprocessing-with-python/Python%20inputs_huc974fce694d0577f1002a8c131679796_132225_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="703" height="516">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 2. Script tool interface and typical processing dialog window with execution time.
+  </figcaption>
+
+
+</figure>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-3-example-snippet-of-python-code">
+
+
+  <a data-fancybox="" href="/project/geoprocessing-with-python/Python%20snippet_hu81e8343999e978ae98dcaab98e36a6e8_137261_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 3. Example snippet of Python code.">
+
+
+  <img data-src="/project/geoprocessing-with-python/Python%20snippet_hu81e8343999e978ae98dcaab98e36a6e8_137261_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="512" height="569">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 3. Example snippet of Python code.
+  </figcaption>
+
+
+</figure>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-4-example-pdf-exported-by-the-python-tool">
+
+
+  <a data-fancybox="" href="/project/geoprocessing-with-python/Python%20pdf%20report_hua25fb07c5be305568a8e6a1fcd63edf1_479238_2000x2000_fit_lanczos_2.PNG" data-caption="Figure 4. Example PDF exported by the Python tool.">
+
+
+  <img data-src="/project/geoprocessing-with-python/Python%20pdf%20report_hua25fb07c5be305568a8e6a1fcd63edf1_479238_2000x2000_fit_lanczos_2.PNG" class="lazyload" alt="" width="684" height="906">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 4. Example PDF exported by the Python tool.
+  </figcaption>
+
+
+</figure>
+
+<h2 id="python-libraries">Python Libraries</h2>
+<ul>
+<li>ArcPy</li>
+<li>Numpy</li>
+<li>Pandas</li>
+<li>Matplotlib</li>
+</ul>
+<h2 id="msgis-program-skills">MSGIS Program Skills</h2>
+<ul>
+<li>GIS Analysis</li>
+<li>Spatial Data and Algorithms</li>
+<li>GIS Workflow</li>
+<li>Model Building</li>
+<li>Communication Skills</li>
+<li>Scripting (Python)</li>
+</ul>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/gis-analysis/">GIS Analysis</a>
+  
+  <a class="badge badge-light" href="/tag/spatial-algorithms/">Spatial Algorithms</a>
+  
+  <a class="badge badge-light" href="/tag/gis-workflow/">GIS Workflow</a>
+  
+  <a class="badge badge-light" href="/tag/model-building/">Model Building</a>
+  
+  <a class="badge badge-light" href="/tag/communication/">Communication</a>
+  
+  <a class="badge badge-light" href="/tag/scripting/">Scripting</a>
+  
+  <a class="badge badge-light" href="/tag/python/">Python</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://eneemann.github.io/project/geoprocessing-with-python/&amp;text=Geoprocessing%20with%20Python" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://eneemann.github.io/project/geoprocessing-with-python/&amp;t=Geoprocessing%20with%20Python" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Geoprocessing%20with%20Python&amp;body=https://eneemann.github.io/project/geoprocessing-with-python/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://eneemann.github.io/project/geoprocessing-with-python/&amp;title=Geoprocessing%20with%20Python" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://eneemann.github.io/project/geoprocessing-with-python/&amp;title=Geoprocessing%20with%20Python" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/erik-neemann/avatar_hu7959ef427b90abd110d7e2555125f096_1185389_270x270_fill_q90_lanczos_center.jpg" alt="Erik Neemann">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://eneemann.github.io/">Erik Neemann</a></h5>
+        <h6 class="card-subtitle">GIS Analyst</h6>
+        <p class="card-text">I&rsquo;m interested in solving spatial problems with Python tools.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:erikneemann@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/erikneemann/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/eneemann" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/Erik_AGRC" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/capstone/">Capstone</a></li>
+      
+      <li><a href="/project/geocomputation/">Geocomputation</a></li>
+      
+      <li><a href="/project/spatial-modeling/">Spatial Modeling</a></li>
+      
+      <li><a href="/project/remote-sensing-analysis/">Remote Sensing Analysis</a></li>
+      
+      <li><a href="/project/advanced-geographic-data-analysis/">Advanced Geographic Data Analysis</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

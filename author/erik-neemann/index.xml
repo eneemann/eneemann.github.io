@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Erik Neemann | Neemann MSGIS</title>
+    <link>https://eneemann.github.io/author/erik-neemann/</link>
+      <atom:link href="https://eneemann.github.io/author/erik-neemann/index.xml" rel="self" type="application/rss+xml" />
+    <description>Erik Neemann</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_512x512_fill_lanczos_center_2.png</url>
+      <title>Erik Neemann</title>
+      <link>https://eneemann.github.io/author/erik-neemann/</link>
+    </image>
+    
+  </channel>
+</rss>

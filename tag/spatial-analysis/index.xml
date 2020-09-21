@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spatial Analysis | Neemann MSGIS</title>
+    <link>https://eneemann.github.io/tag/spatial-analysis/</link>
+      <atom:link href="https://eneemann.github.io/tag/spatial-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <description>Spatial Analysis</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 09 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_512x512_fill_lanczos_center_2.png</url>
+      <title>Spatial Analysis</title>
+      <link>https://eneemann.github.io/tag/spatial-analysis/</link>
+    </image>
+    
+    <item>
+      <title>Geocomputation</title>
+      <link>https://eneemann.github.io/project/geocomputation/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/geocomputation/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/NeuralNet%20-%20Presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/NeuralNet%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Wildfire is a common hazard faced by large regions in the western US due to the combination of vegetation/fuels, climate, topography, and ignition sources. In recent decades, with increases in population, communities and residential areas have continually expanded outward from urban centers. In the mountainous west, this expansion typically leads to additional development in the urban-wildland interface, thereby increasing the number of people exposed to the potential wildfire hazard. Identifying areas of wildfire susceptibility is important to ensure at-risk populations have emergency management plans and are able to mitigate fire risk as much as possible. The most effective method of identifying risk areas is producing maps by combining multiple wildfire parameters in a geographic information system (GIS). This study aims to quantify wildfire susceptibility in Utah and identify locations at greatest risk.&lt;/p&gt;
+&lt;p&gt;A multi-layer perceptron (MLP) neural network (NN) was chosen as the model for this study due to the recent success of other research projects in implementing NNs to predict forest fire susceptibility (Satir et al., 2015; Bui et al., 2017). Neural Networks are a natural choice for analyzing fire potential because they are good at approximating complex functions, are able to capture both linear and nonlinear relationships that exist between predictors and dependent variables, and adaptively learn from training data (Kantardzic, 2011; Satir et al., 2015).&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;All data used in this research came from free, publicly-available sources. The original data sets were initially gathered on disparate grids (different cell sizes, projections, dimensions, etc.) and were aligned to a uniform grid via projections in ESRI’s ArcMap software and with the use of ArcPy scripts. The data were also clipped down to the same geographic areas of interest (figure 1). This resulted in raster data sets with a Universal Transverse Mercator coordinate system in zone 12 North (UTM 12N). Each grid cell is 30 by 30 m with total dimensions of 2867 by 4251 pixels. The data was then resampled to a 90 by 90 m grid to alleviate computational challenges encountered on the full-resolution data.&lt;/p&gt;
+&lt;p&gt;A snapshot of all data sets used in the NN model is shown in Figure 1, below. A description of each data set can be found in the following paragraphs.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-snapshot-of-the-data-used-in-the-neural-network&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20all%20data_hu656fba59b79c0aa86e005e62203cc9eb_1942934_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 1. Snapshot of the data used in the neural network.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20all%20data_hu656fba59b79c0aa86e005e62203cc9eb_1942934_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1339&#34; height=&#34;819&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Snapshot of the data used in the neural network.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;Historical Fires&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Historical fire occurrence and burn severity data was collected from the Monitoring Trends in Burn Severity (MTBS) project. For this study, data from 2007-2016 was used to train the NN in order to place an emphasis on the most recent decade of fire data, which should best correspond with recent vegetation and infrastructure data. The ten annual data sets from 2007-2016 where then reclassified to only include burned areas (data value of 1-4), and summed up into a single data set. This resultant MTBS fire data set accounts for a combination of cumulative fire occurrences (multiple fires) and burn severities, called the historical fire index.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Terrain&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Digital Elevation Model (DEM) used in this study was downloaded from the Utah Wildfire Risk Assessment Portal (WRAP). Slope and aspect data sets were calculated from the DEM and used as inputs into the NN model. These three terrain-related data sets are important for the neural network model because each has an influence on wildfire and fire-related parameters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Vegetation&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vegetation data sets were also gathered from the Utah WRAP, each on the same UTM 12N, 30 m grid as the DEM data. The vegetation type data set categorizes each grid cell into one of 19 different categories. The vegetation type information is important for identifying the type of biomass available for burning, where some vegetation types burn more readily than others due to their biophysical properties (Bui et al., 2017). Two additional vegetation data sets, canopy cover (%) and bulk canopy density (kg/m&lt;sup&gt;3&lt;/sup&gt; * 100) are also included to help quantify the amount of biomass fuel that is available for burning on a grid cell.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Infrastructure&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A statewide Utah roads data set was gathered from the Utah Automated Geographic Reference Center (AGRC). The vector road features were used to calculate a distance-to-roads raster layer using Euclidean distance, meaning the minimum distance from a pixel to a road is calculated “as the crow flies.” Distance to roads is employed as a mechanism to measure the anthropogenic influence on wildfires and relates to the potential cause of wildfires (Satir et al., 2015; Bui et al., 2017).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Climate&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Climate data for this study was collected from Oregon State’s PRISM Climate Group. Monthly 30-year normal temperature and precipitation data sets were downloaded with 800 m grid cells. Only data from the months of June through October were used, representing the primary fire season in Utah. The monthly climate data sets, for both temperature and precipitation, were averaged into a single data set representing the mean conditions for the entire fire season. These data were resampled to 30 m grid cells with cubic interpolation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;methods&#34;&gt;Methods&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Data Preprocessing&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In order to prepare the data for input into the neural network model, several preprocessing steps were necessary. First, the data was scaled with a max-min normalization to place each data set between a range of 0 to 1. This was needed to ensure that the scale variations among the different data sets didn’t lead one or two variables to overwhelm the training process and contaminate the results.&lt;/p&gt;
+&lt;p&gt;The historical fire severity MTBS data, used for training the NN, was thinned in order to improve the training process. The vast majority of the area of interest is comprised of pixels that have not been burned (~98%), but it was desirable to have better balance among burned and unburned pixels in the training data set. For this reason, a subset of the entire AOI was used for training, where polygons around the burned areas where chosen to provide a more balanced mix of burned/unburned pixels (black polygons in figure 2). This also improved the efficiency of training the NN, as data set used for training was about 10% of the original size.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-historical-fire-severity-data-used-to-train-neural-network&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20training%20data_hu22d799954f9642f22a4cdb9d298a48bc_827087_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Historical fire severity data used to train neural network.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20training%20data_hu22d799954f9642f22a4cdb9d298a48bc_827087_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;659&#34; height=&#34;746&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Historical fire severity data used to train neural network.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;Artificial Neural Network&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The R statistical language was used to implement the NN using RStudio software, specifically with the ‘neuralnet’ library. A forward-feed MLP NN was employed with a resilient backpropagation learning algorithm. The network was “fully-connected,” meaning that every neuron in a layer was connected to every neuron in adjacent layers. The final NN architecture including 15 hidden layers and 1 output node, representing fire susceptibility. In addition to building a NN model with the full complement of input data sets, a second model was generated without the vegetation type data. This was done to examine the influence of vegetation type and its effect on the results. Other than the removal of the vegetation type categories, there were no other differences between the models. This model will hereafter be referred to a “NVT.”&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-1-final-categorization-of-fire-susceptibility-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20fire%20suscep%20table_hu586cf38722b3e238680593525ef779bd_13518_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 1. Final categorization of fire susceptibility model.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20fire%20suscep%20table_hu586cf38722b3e238680593525ef779bd_13518_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;478&#34; height=&#34;206&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 1. Final categorization of fire susceptibility model.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Finally, the output of each model was normalized with a min-max normalization method to put the Fire Susceptibility Index on a 0-1 scale. The results from each model were then categorized into 6 fire susceptibility groups with a natural breaks methodology. However, because the categories from the Original and NVT models were very similar, the final categorization for each model was standardized based on table 1. This created a consistent symbology for generating fire susceptibility maps and allowed for a more direct comparison between the two models.  A diagram showing the final architecture of the NVT model is shown in figure 3.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-final-neural-network-architecture-and-weights-for-the-no-vegetation-type-nvt-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20diagram_hu6cda6e5248879d9605d31148466bbdd1_286365_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Final neural network architecture and weights for the No Vegetation Type (NVT) model.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20diagram_hu6cda6e5248879d9605d31148466bbdd1_286365_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;740&#34; height=&#34;686&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Final neural network architecture and weights for the No Vegetation Type (NVT) model.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The output from each of the NN models showed results with many similarities and some notable differences. Both models had a strong histogram peak centered on 0.55 (not shown), but the distribution of values around that peak varies. In the Original model, the vast majority of pixels were placed between 0.4 and 0.8, with a narrower distribution and shorter tails. The NVT model, however, had a wider distribution and longer tails, with a generally broader range between 0.2 and 0.85. This indicates that the Original model has many more values scoring in the middle of the range, while the NVT model’s larger range has more pixels assessed with “very low” or “extreme” values. Visually, this is depicted in figure 4, which displays a map of the Wasatch Front region with the Fire Susceptibility Index calculated for each pixel. Compared to the Original Model, the NVT model has more values in the “extreme” category for high-threat areas such as Antelope Island in the Great Salt Lake, the northern Oquirrh Mountains, the Lake Mountains, and the mountain range south of Utah Lake. The NVT model also has a larger quantity of “very low” pixels along the high peaks of the Wasatch Front and Oquirrh Mountains.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-fire-susceptibility-index-from-the-original-and-nvt-models-with-census-tracts-outlined-in-black&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20maps_hu81f9ae02bb9c704784063ca68b3dfc2c_435562_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Fire Susceptibility Index from the Original and NVT models with census tracts outlined in black.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20maps_hu81f9ae02bb9c704784063ca68b3dfc2c_435562_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1247&#34; height=&#34;782&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Fire Susceptibility Index from the Original and NVT models with census tracts outlined in black.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Another notable difference between the models is the apparent influence of the vegetation type variable in the Original model and its lack of influence in the NVT model (where it was removed). The Original model has a generally noisier appearance, reflective of the noisy nature of the vegetation type variable, whereas the NVT model has smoother, more gradual transitions from low to high index values. The Original model also highlights the area between Salt Lake International Airport and the Great Salt Lake with “very high” and “extreme” index values, while the NVT model shows “very low” to “moderate” values. Here, the Original model appears to be picking up on increased fire susceptibility from the shrubland and chaparral vegetation types. The NVT model also tends to be more strongly influenced by elevation and aspect in mountainous regions, whereas the Original model is strongly influenced by vegetation type.&lt;/p&gt;
+&lt;p&gt;The influence of vegetation type is further examined by plotting variable importance based on NN connection weights from each model, as seen in figure 5. Indeed, the 10 most important variables in the Original model are vegetation types, which also make up 15 of the 18 most important variables. The top non-vegetation variables include elevation, precipitation, and distance to roads. For the NVT model, the top 3 variables are precipitation, elevation, and distance to roads. This comparison shows the importance of the vegetation type variables in the Original model, perhaps even indicating that it is over-influencing results.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-variable-importance-plots-for-original-and-nvt-models&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20variable%20import_hue98367a9209906c53f8b9db7635fee08_61967_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 5. Variable importance plots for Original and NVT models.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20variable%20import_hue98367a9209906c53f8b9db7635fee08_61967_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1162&#34; height=&#34;608&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Variable importance plots for Original and NVT models.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;A final, quantitative comparison of the Original and NVT models is presented in table 2. Mean squared error (MSE) and mean absolute error (MAE) metrics are calculated for each model using the subset of validation data from training the NN models. These metrics both indicate that the NVT model performs better as its errors are roughly half of the Original model’s error. The area under the curve (AUC) metric for the receiver operating characteristic (ROC) curve was also calculated for each model. This value accounts for a balance between true positive rate and false positive rate when using a broad range of thresholds to classify model results. The AUC metric indicates that the Original model (0.8875) outperformed the NVT model (0.8127) as the Original model had a higher value and was closer to the perfect score of one. These two sets of metrics (errors and AUC) show conflicting results without a clear winner on which model performs best. It should also be noted that these metrics only consider about 3% of all pixels in the study area, those used for validation of the training data.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-2-quantitative-results-comparing-original-and-nvt-models-mean-squared-error-mean-absolute-error-and-receiver-operating-characteristic-area-under-the-curve-calculated-from-the-validation-data-subset&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20metrics_hu811fc955c48ca94ca83dc3b46576de37_52031_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 2. Quantitative results comparing Original and NVT models. Mean Squared Error, Mean Absolute Error, and Receiver Operating Characteristic Area Under the Curve calculated from the validation data subset.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20metrics_hu811fc955c48ca94ca83dc3b46576de37_52031_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;805&#34; height=&#34;146&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 2. Quantitative results comparing Original and NVT models. Mean Squared Error, Mean Absolute Error, and Receiver Operating Characteristic Area Under the Curve calculated from the validation data subset.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, this study demonstrates that the NN methodology produced reasonable results in quantifying wildfire susceptibility along Utah’s Wasatch Front. Particularly, it shows that vegetation type may play a prominent role in estimating wildfire susceptibility, as was noted by the model differences between the Original an NVT models. The inclusion of vegetation type often produced noisier results, reflecting the noisy nature of the vegetation type data itself. It also demonstrated local maxima that appeared to be directly tied to the presence of specific vegetation types (e.g., grassland, exotic herb, and chaparral). A comparison of variable importance from the Original and NVT models showed that vegetation type dominated the top 18 variables in the Original model (Figure X). This reliance on vegetation type may have actually been to the detriment of the model and other methods of employing vegetation information may improve results. The removal of vegetation type in the NVT model allowed other variables to dominate the model results, often varying by geographic location (e.g., elevation, aspect).&lt;/p&gt;
+&lt;p&gt;Areas with low fire susceptibility were often characterized by the presence of water, location near urban centers, or at very high elevations. Higher fire susceptibility regions tended to exist at moderate elevations and included the presence of specific vegetation types (e.g., grassland, chaparral) in the Original model. The NVT model tended to have a larger range in fire susceptibility values, with the greatest number of pixels in the “very low” and “extreme” categories.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Additional details on all aspects of this project, along with references and citations can be found in the  &lt;a href=&#34;https://eneemann.github.io/files/NeuralNet%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Spatial Analysis&lt;/li&gt;
+&lt;li&gt;Data Model and Structures&lt;/li&gt;
+&lt;li&gt;Database Design&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (R and Python)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Remote Sensing Analysis</title>
+      <link>https://eneemann.github.io/project/remote-sensing-analysis/</link>
+      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/remote-sensing-analysis/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Thomas%20-%20Presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Thomas%20-%20Final%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Thomas%20-%20Poster.pdf&#34; target=&#34;_blank&#34;&gt;Conference Poster&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;The Thomas fire burned areas of Ventura and Santa Barbara counties in southern California between ignition on 4 December 2017 and containment on 12 January 2018. It erupted in early December as high pressure over the Great Basin fueled strong Santa Ana winds and dry conditions. When it was finally contained in mid-January 2018, the Thomas Fire had burned 281,893 acres, making it the largest California wildfire in modern history. The fire caused the evacuation of more than 100,000 people and destroyed over 1300 structures (Cal Fire 2018). The large swath of burn-scarred land immediately became vulnerable to mudslides and debris-flows. On 9 January 2018, an atmospheric river event brought tremendous precipitation to southern California and 13.7 mm (0.54 in) of rain fell in just 5 minutes on Montecito and the nearby mountains to the north (National Weather Service 2018). The resulting debris-flows killed 21 people, destroyed 166 structures (Figure 1), and damaged 395 additional structures (Cal Fire 2018). Much of the region ended up with 7-15 cm (2.75-5.9 in) of rain in just 2 days. The combination of recent wildfires, intense precipitation, and terrain characteristics (slope severity and soil properties) generated the devastating debris-flows.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-photos-from-santa-barbara-county-fire-public-information-officer-twitter-eliasonmike-sbcfireinfo&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-background_hu32628798a44b978f5c2ffbaabc7eba85_1689486_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 1. Photos from Santa Barbara County Fire-Public Information Officer Twitter: @EliasonMike, SBCFireInfo&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-background_hu32628798a44b978f5c2ffbaabc7eba85_1689486_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1165&#34; height=&#34;824&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Photos from Santa Barbara County Fire-Public Information Officer Twitter: @EliasonMike, SBCFireInfo
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;All data used in this project came from free, publicly-available sources. Satellite imagery from the Sentinel-2 Multispectral Imager (MSI) was gathered from the European Space Agency via Google Earth Engine. The MSI has 13 bands spanning the visible to shortwave infrared wavelengths at variable resolutions of 10, 20, and 60m. Digital Elevation Model (DEM) data was collected from the USGS National Map at 1/9 arc-second resolution (~10m). Soil erodibility data came from the Natural Resources Conservation Service State Soil Geographic Data Base. Precipitation observations were gathered from the National Weather Service and precipitation forecasts from the operational High-Resolution Rapid Refresh (HRRR) model were downloaded from the HRRR Archive at the University of Utah. The fire perimeter (Figure 2) and watershed outlets (pour points) were derived from USGS data. The debris-flow polygons were pulled from a web map produced by the Santa Barbara Independent.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-thomas-fire-perimeter-and-study-area&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20region_hu02bfbb54b97400905ab1c9cdbb6ff0aa_76801_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Thomas Fire perimeter and study area&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20region_hu02bfbb54b97400905ab1c9cdbb6ff0aa_76801_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;732&#34; height=&#34;384&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Thomas Fire perimeter and study area
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;methods&#34;&gt;Methods&lt;/h2&gt;
+&lt;p&gt;Sentinel-2 imagery of southern California was collected for pre-fire (3 December 2017) and post-fire (22 January 2018) conditions. The NBR (Brewer 2005) was then calculated for each image using, Band 12 (SWIR, 2190 nm) and Band 8A (NIR, 865 nm) from the formula below:&lt;/p&gt;
+&lt;p&gt;$$NBR = 1000*\frac{NIR - SWIR}{NIR + SWIR}$$&lt;/p&gt;
+&lt;p&gt;A differenced NBR (dNBR) was generated from the pre- and post-fire NBR data to identify burn severity resulting from the Thomas Fire (Figure 3). The severity thresholds for moderate (&amp;gt; 350) and high (&amp;gt; 650) burns were set as the average respective threshold from California fires in 2015, according to data from Monitoring Trends in Burn Severity (MTBS). This number was then rounded up to the next multiple of 50, to be conservative. The DEM data was used in a hydrology workflow to delineate primary streams and watershed boundaries based on USGS pour points that were snapped to the manually-created streams. Slope data were also built from the 10 m DEM data set. Once the foundational data was prepared, debris-flow probabilities for the 9 January 2018 Montecito event were calculated based on the logistic regression approach outlined by Staley et al, 2016, where statistical likelihood of debris-flow occurrence, P, is:&lt;/p&gt;
+&lt;p&gt;$$P = \frac{e^\chi}{1 + e^\chi}$$&lt;/p&gt;
+&lt;p&gt;Further, χ is determined by the link function:&lt;/p&gt;
+&lt;p&gt;$$\chi = \beta + C_{1}TR + C_{2}FR + C_{3}SR$$&lt;/p&gt;
+&lt;p&gt;The parameters in the link function are represented by:&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20Table%201_hu4fda4286d5173640c6ebd042a3f125b4_96787_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20Table%201_hu4fda4286d5173640c6ebd042a3f125b4_96787_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;635&#34; height=&#34;282&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The logistic regression approach was used to model predicted debris-flow probability based on a common USGS rainfall threshold (6 mm in 15 min), actual observations in Montecito (13.7 mm in 15 min), and rainfall rates from HRRR hourly accumulated precipitation forecasts (~1.0-8.7 mm in 15 min) valid within 2 hours of the observed debris-flows. The 0500 UTC run of the operational HRRR model was used, with hourly rainfall at the end of forecast hour 08, valid 1300 UTC. This output was selected because it was representative of observed rainfall, though the timing was off by 75-90 min from the actual rainfall maximum (~1130 UTC).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-methodology-of-debris-flow-probability-calculation&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20method_huabe4ed5459da4f61fe2f69ce0db098fa_962041_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 3. Methodology of debris flow probability calculation&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20method_huabe4ed5459da4f61fe2f69ce0db098fa_962041_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1606&#34; height=&#34;1693&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Methodology of debris flow probability calculation
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The logistic regression approach successfully identified the debris-flow threat posed by the Thomas Fire to Montecito for the 9 January 2018 storm (Figure 4). All models indicated an elevated threat (P &amp;gt;= 0.5) for the watersheds above Montecito. When observed rainfall totals from Montecito on 9 January (13.7 mm in 15 min) were used in the model, it indicated P &amp;gt; 0.99 (not shown). The uniform rainfall threshold of 6 mm in 15 minutes, also identified the high threat, generally 0.591 &amp;lt; P &amp;lt; 0.798. Additionally, forecasts from the HRRR model demonstrated intense rainfall leading to 0.663 &amp;lt; P &amp;lt; 0.882 in the watersheds above Montecito. Predictions based on HRRR data also generated better spatial results, with the eastern portions of the Thomas Fire watersheds showing low debris-flow probability.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-debris-flow-probabilities-based-on-uniform-rainfall-top-left-hrrr-forecast-rainfall-top-right-and-probability-difference-bottom&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20probabilities_hua662e2dfca6dab97c0717e02689fcd21_426999_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 4. Debris-flow probabilities based on uniform rainfall (top-left), HRRR forecast rainfall (top-right), and probability difference (bottom)&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20probabilities_hua662e2dfca6dab97c0717e02689fcd21_426999_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1140&#34; height=&#34;697&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Debris-flow probabilities based on uniform rainfall (top-left), HRRR forecast rainfall (top-right), and probability difference (bottom)
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Overall, the spatially-varying debris-flow probabilities generated with HRRR model data decreased the percentage of high-probability watersheds (see table below). When compared to the uniform precipitation probabilities, the added information from the HRRR model forecasts appear useful in isolating the greatest debris-flow threat, as opposed to generalizing high probabilities over a large area. If extended to other events, this could help reduce false alarms, constrain evacuation regions, modify response plans, and stage resources for recovery efforts.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20Table%202_hu072da36874967485922f3b3c0504161c_33124_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20Table%202_hu072da36874967485922f3b3c0504161c_33124_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;558&#34; height=&#34;117&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Closer inspection of the Montecito area, shows the HRRR-based probabilities accurately characterized the debris-flow hazard in the watersheds above the town (Figure 5), which feed the primary streams. All 561 structures that were damaged or destroyed in the event were located in the purple damage report area of the figure below.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-zoomed-in-view-of-watersheds-in-montecito-region-with-damage-report-areas&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20Montecito_huc4b27ef5ab1fa8e9f1f3f95aa9ddeea7_401991_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 5. Zoomed-in view of watersheds in Montecito region with damage report areas&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/remote-sensing-analysis/Thomas%20-%20Montecito_huc4b27ef5ab1fa8e9f1f3f95aa9ddeea7_401991_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1183&#34; height=&#34;630&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Zoomed-in view of watersheds in Montecito region with damage report areas
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Calculating dNBR from Sentinel-2 imagery is an effective way to quantify burn severity and coverage.&lt;/li&gt;
+&lt;li&gt;The debris-flow probability method used by the USGS and introduced by Staley et al. 2016, performed well in assessing the debris-flow threat in Montecito, CA on 9 January 2018.&lt;/li&gt;
+&lt;li&gt;The use of spatially-varying precipitation forecasts from high-resolution weather models may be useful in identifying the areas of greatest debris-flow risk. This may be particularly true near large fires or fire complexes and additional research using ensemble models is recommended.&lt;/li&gt;
+&lt;li&gt;While regional modification would likely be required, this methodology could potentially be extended to other locations around the world to identify regions and populations at risk from debris-flows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Additional details on the methodology and results, including supervised classification and NBR change detection, and all references can be found in the &lt;a href=&#34;https://eneemann.github.io/files/Thomas%20-%20Final%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Spatial Analysis&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Advanced Geographic Data Analysis</title>
+      <link>https://eneemann.github.io/project/advanced-geographic-data-analysis/</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/advanced-geographic-data-analysis/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Uber%20Final%20Report%20w%20Figures.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;As Uber and other rideshare platforms continue to grow in popularity, the companies amass tremendous amounts of data from the thousands of rides logged every day in major cities (Dogtiev 2017). This data would be extremely useful for municipality planners and engineers, as well as Uber drivers alike. However, Uber understands the power of this and keeps a close hold on the raw data. This study takes a more detailed look at Uber data that was manually-collected in Salt Lake City from August to November of 2017. The goal is to help answer questions, such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Where should drivers position themselves to get the highest-earning rides?&lt;/li&gt;
+&lt;li&gt;How accurately can a trip’s earnings be predicted based on a few variables?&lt;/li&gt;
+&lt;li&gt;Do trip distances, tips, or earnings differ by rider gender?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A variety of data analysis methods were employed to interrogate the data, including: summary statistics, linear regression, generalized linear models (GLMs), regression trees and random forests, principal component analysis (PCA), geostatistics, and spatial point patterns. These techniques have been applied in a variety of ways throughout the scientific literature over the past few decades and were useful in examining the Uber data.&lt;/p&gt;
+&lt;h2 id=&#34;data-and-methods&#34;&gt;Data and Methods&lt;/h2&gt;
+&lt;p&gt;Data was collected from 125 Uber trips between August and November 2017, primarily on Friday mornings between 5:30-9:30am. Of these 125 trips, the analysis data set was trimmed down to those trips starting in Salt Lake County (117), while the remaining trips (7) were used for model verification. The spatial data were collected with a smartphone GPS application and the attributes were gathered from the Uber app and website. These attributes include trip date, start/end time, duration, distance, driver earning total, surge multiplier, tip, rider gender, latitude, longitude, and an airport trip identifier. Some analyses were conducted on the trip’s total earnings, while other methods used a corrected (standardized) value with the surge multiplier and tips removed. This was done in an effort to remove the seemingly random components of the total earnings. Polyline features from the GPS traces were collected, but the geographical analysis presented here is limited to the trip starting points (and ending points) and their associated attributes (Figure 1).&lt;/p&gt;
+&lt;p&gt;Of the data collected, a typical trip lasted around 12.5 minutes, covering 4-5 miles with no tip or surge multiplier, resulting in a total driver earning of $5-6. While this trip is considered “typical,” there are a wide variety of trip total earnings, corrected earnings (tip &amp;amp; surge multiplier removed), distances, durations, and tips, as shown in the histograms below (Figure 2). Trip earnings and tips tend to follow an exponential distribution, while distance and duration are closer to normal or gamma distributions. The differences in these distributions created challenges in analyzing the data, resulting in some caveats for interpretation.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-histograms-of-total-earning-left-distance-center-and-duration-right-for-all-uber-trips&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber_histograms_hu0867e4a851a949c7b804a1ef93319262_47073_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Histograms of total earning (left), distance (center), and duration (right) for all Uber trips.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber_histograms_hu0867e4a851a949c7b804a1ef93319262_47073_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1270&#34; height=&#34;409&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Histograms of total earning (left), distance (center), and duration (right) for all Uber trips.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;While only 16.2% of Uber trips end at the airport, airport trips result in higher driver earnings (Figure 3); the mean airport trip earns $11.09, compared to $5.83 for non-airport trips. A T-test confirms that this is a statistically significant result at greater than 99.9% confidence. Additionally, males make up 53.8% of Uber riders, but differences in driver earnings based on rider gender are not statistically significant. Driver total earnings most closely correlated with trip distance, and Figures 4 shows a scatterplot of corrected earnings by distance. These plots also break out gender by color with males (females) in blue (pink), and airport trips by size where non-airport trips (airport trips) are small dots (large dots).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-box-and-whiskers-plots-of-non-airport-and-airport-uber-trips&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20Box-Whiskers_hud9f12a4c9a6ba64bd886f234a38d8ffb_27212_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 3. Box and whiskers plots of non-airport and airport Uber trips.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20Box-Whiskers_hud9f12a4c9a6ba64bd886f234a38d8ffb_27212_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;532&#34; height=&#34;531&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Box and whiskers plots of non-airport and airport Uber trips.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-scatterplot-of-corrected-uber-trip-earnings-by-distance-with-malefemale-rider-and-airportnot-airport-trips-symbolized-distinctly&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20corrected%20earning%20%28scatter%29_hu66c14d421320732acdf5a2d0e7fe08c3_44793_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 4. Scatterplot of corrected Uber trip earnings by distance, with male/female rider, and airport/not-airport trips symbolized distinctly.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20corrected%20earning%20%28scatter%29_hu66c14d421320732acdf5a2d0e7fe08c3_44793_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;522&#34; height=&#34;528&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Scatterplot of corrected Uber trip earnings by distance, with male/female rider, and airport/not-airport trips symbolized distinctly.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Several methods that were used to analyze the Uber data will be described in the following paragraphs. First, a handful of prediction models will be discussed, followed by geostatistical and spatial point pattern analysis. The first two prediction models were built with linear regression. One was a very simple model that relied purely on distance to predict total earnings &amp;ndash; distance is known to be the largest component of Uber’s actual driver earning calculation. The second model used stepwise automatic selection starting from a null model and with a total scope of 8 variables (distance, duration, surge, tip, gender, airport, longitude, latitude). This resulted in an “optimum” model with 5 variables (distance, duration, tip, surge, gender). The third model was a GLM that used a Poisson distribution and log link function. The fourth and fifth models used regression trees, the fourth of which used a single tree, pruned to a moderately aggressive level of complexity. The fifth model employed a random forest of 500 trees, with 5 variables considered at each split. Finally, principal component regression was used for the sixth model. This applied 4 components resulting from the PCA that accounted for 98.4% of the variance in the data. Once all models were built, they were used to predict total earnings and log-earnings from the 7 data points that fell outside of Salt Lake County.&lt;/p&gt;
+&lt;p&gt;The next set of analyses consisted of geostatistical prediction and simulation. Ordinary kriging was initially done to estimate total earnings across Salt Lake City based on trip starting points. This was followed by conditional kriging simulations done to estimate the probability of earnings above a certain threshold. Both start and end points were used for kriging simulations, but the end point data proved much more difficult to fit with variograms, resulting in limited success.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The prediction model results showed a variety of performance skill in estimating the total earnings of the 7 Uber trips that fell outside of Salt Lake County. Using root mean squared errors (RMSE) as the primary metric, the optimized linear model performed the best, followed by the PCR model and random forest model (not shown). All models showed improved performance for log-earnings (vs. total earnings; not shown), except for the PCR model (Figure 5). In this case, the random forest model was the best, followed by the single regression tree and the optimum linear model. The fact that nearly all models performed better with log-earnings, demonstrates that using log-earnings as the dependent variable is probably the best choice for regression modeling, given the distribution mentioned previously.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-scatterplot-of-predicted-uber-trip-total-earning-by-model-left-and-rmse-bar-charts-by-model-right&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20model%20results_hu694e3ade28c05c55ee4dd22a95a07636_35255_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 5. Scatterplot of predicted Uber trip total earning by model (left) and RMSE bar charts by model (right).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20model%20results_hu694e3ade28c05c55ee4dd22a95a07636_35255_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;812&#34; height=&#34;404&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Scatterplot of predicted Uber trip total earning by model (left) and RMSE bar charts by model (right).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;A plot of total earnings based on start points were used to interpolate a surface of values across the Salt Lake Valley with an ordinary kriging technique (not shown). The ordinary kriging results showed relatively high cross-validation errors (not shown) even though the residuals appeared random. A kriging simulation of 50 iterations was conducted across the region to predict the probability of total earnings greater than $8 (Figure 6). The simulation identified similar regions as the ordinary kriging, with the addition of a fourth high-probability region between downtown and the airport. The highest probabilities, approaching 80%, are shown near Kearns and on the east side north of I-80. Total earnings for the Uber end points (Figure 6) were also used for kriging simulations. Figure 22 shows the results, with the airport identified by high probabilities of earnings greater than $8 at 90%. Another, broad region of high probabilities covers the southeast quadrant of the Salt Lake Valley, where only a few data points exist. However, the small sample size and poor variogram fit (not shown) for the end point data make this result highly suspect. The area between downtown Salt Lake City and the university also stands out as trips ending there have very low probabilities (less than 10%) of exceeding $8.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-6-kriging-simulations-showing-the-probability-of-uber-trip-earnings-greater-than-8-based-on-trip-start-points-left-and-end-points-right&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20kriging%20simulations_hu2aa168dd79105bb9f6469958ddb069d1_461943_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 6. Kriging simulations showing the probability of Uber trip earnings greater than $8 based on trip start points (left) and end points (right).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20kriging%20simulations_hu2aa168dd79105bb9f6469958ddb069d1_461943_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;804&#34; height=&#34;600&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 6. Kriging simulations showing the probability of Uber trip earnings greater than $8 based on trip start points (left) and end points (right).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;All references and citations can be found in the &lt;a href=&#34;https://eneemann.github.io/files/Uber%20Final%20Report%20w%20Figures.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Spatial Analysis&lt;/li&gt;
+&lt;li&gt;Data Models and Structures&lt;/li&gt;
+&lt;li&gt;Database Design&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (R)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

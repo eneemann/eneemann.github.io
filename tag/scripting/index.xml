@@ -1,0 +1,1686 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scripting | Neemann MSGIS</title>
+    <link>https://eneemann.github.io/tag/scripting/</link>
+      <atom:link href="https://eneemann.github.io/tag/scripting/index.xml" rel="self" type="application/rss+xml" />
+    <description>Scripting</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_512x512_fill_lanczos_center_2.png</url>
+      <title>Scripting</title>
+      <link>https://eneemann.github.io/tag/scripting/</link>
+    </image>
+    
+    <item>
+      <title>Capstone</title>
+      <link>https://eneemann.github.io/project/capstone/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/capstone/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Phragmites%20-%20Poster.pdf&#34; target=&#34;_blank&#34;&gt;Poster&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Phragmites%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The invasive species Phragmites australis, or common reed, causes numerous problems and poses a significant threat to Utah wetlands, including the Great Salt Lake. The tall reed grows very densely into invaded regions, crowds out native species, disrupts migratory bird habitats, and negatively impacts recreation. It also alters the surface water regime, often converting submerged or saturated soils to dry land. As a result, the Utah Department of Natural Resources, Division of Forestry, Fire, and State Lands (FFSL), has taken an aggressive approach to mitigating the Phragmites problem. A big component of Phragmites mitigation includes spraying a wetland-safe herbicide to kill the plant and allow native species to return (Figure 1) using GPS-guided equipment. Efficient spraying requires accurate geographic data representing Phragmites boundaries, but it is currently unavailable. This project generates Phragmites maps from remotely sensed imagery, including satellite and unmanned aerial system platforms (UAS), using a prototype, automated Python script.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-reference-map-of-howard-slough-mitigation-area-left-and-study-area-for-this-project-including-the-uas-imagery-right&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20area_hu5165b237d894a8ae9bbfd6c4c8f5ed1e_546977_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Reference map of Howard Slough mitigation area (left) and study area for this project, including the UAS imagery (right).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20area_hu5165b237d894a8ae9bbfd6c4c8f5ed1e_546977_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;778&#34; height=&#34;520&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Reference map of Howard Slough mitigation area (left) and study area for this project, including the UAS imagery (right).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;methodology&#34;&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;Remotely sensed imagery was collected from three different platforms to facilitate DNR’s Phragmites mitigation work in the Howard Slough Waterfowl Management Area (Figure 2). The image platforms (Table 1), include the European Space Agency’s Sentinel-2 satellite, DigitalGlobe’s WorldView-2 (WV-2) satellite, and PMG Vegetation’s UAS. Each platform collects imagery in different wavelength bands and spatial resolutions.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-1-remote-sensing-imagery-platforms-used-in-this-study-and-their-attributes&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20table1_hu7f57b0cb0c0d881766a10c120a0f2a3d_28800_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Table 1. Remote sensing imagery platforms used in this study and their attributes.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20table1_hu7f57b0cb0c0d881766a10c120a0f2a3d_28800_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;451&#34; height=&#34;120&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 1. Remote sensing imagery platforms used in this study and their attributes.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;These images are then passed into an automated Python script (workflow depicted in Figure 3) that exports a shapefile for use in GPS-enabled Phragmites spraying equipment.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-diagram-of-automated-script-workflow-the-left-columns-describe-the-scripts-primary-functions-while-the-right-columns-represent-of-snapshot-of-each-functions-output&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20method%20wide_hu7fa30e974d7d9247d51e761da970a195_520699_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Diagram of automated script workflow. The left columns describe the script’s primary functions, while the right columns represent of snapshot of each function’s output.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20method%20wide_hu7fa30e974d7d9247d51e761da970a195_520699_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1143&#34; height=&#34;661&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Diagram of automated script workflow. The left columns describe the script’s primary functions, while the right columns represent of snapshot of each function’s output.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The final classified images show quite different results (Figure 4), but each platform scored well (above 0.9) on several validation metrics (Table 2).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-2-a-sample-of-accuracy-metrics-for-each-platforms-final-classification-metrics-are-calculated-from-independent-validation-pixels-that-were-not-used-to-train-the-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20table2_hu9729946a28f176f14b69884f2bcd011d_17558_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 2. A sample of accuracy metrics for each platform’s final classification. Metrics are calculated from independent validation pixels that were not used to train the model.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20table2_hu9729946a28f176f14b69884f2bcd011d_17558_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;553&#34; height=&#34;245&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 2. A sample of accuracy metrics for each platform’s final classification. Metrics are calculated from independent validation pixels that were not used to train the model.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;While classification differences are expected for a complex wetland scene, the high scores for each platform may indicate that the training/validation data samples were unambiguous and easy to classify. Sentinel-2 even had a perfect score for producer’s accuracy with the live Phragmites class. Both objective accuracy metrics and subjective assessment indicate that WorldView-2 performed the best. It appears to have the most probable and coherent classification, with the best representation of dead Phragmites in previously-treated areas. The UAS results are much less coherent, but the higher resolution may better capture small pockets of water and native emergent vegetation. All platforms appear to over-classify live Phragmites and may have difficulty in distinguishing it from other forms of live vegetation. Generally, both higher resolution data and additional wavelength bands appear to improve image classification.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-standard-red-green-blue-rgb-image-from-each-platform-top-row-and-final-classified-land-cover-image-using-object-based-random-forest-model-bottom-row&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20classified_hu7fdbafbd30f744dcb729c0ae040dda66_763218_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Standard red, green, blue (RGB) image from each platform (top row) and final classified land cover image using object-based random forest model (bottom row).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20classified_hu7fdbafbd30f744dcb729c0ae040dda66_763218_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;743&#34; height=&#34;735&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Standard red, green, blue (RGB) image from each platform (top row) and final classified land cover image using object-based random forest model (bottom row).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;discussion&#34;&gt;Discussion&lt;/h2&gt;
+&lt;p&gt;Overall, the methods employed in this study produced reasonable land cover classification results and successfully generated a shapefile identifying Phragmites boundaries from an automated workflow. However, there were several limitations to this study that prevent strong conclusions from being drawn, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ground truth data was not available; therefore, training and validation data was derived through visual interpretation of high-resolution imagery.&lt;/li&gt;
+&lt;li&gt;Asynchronous images were assumed to be collected at the same time and the same set of training/validation data was used on images from all platforms.&lt;/li&gt;
+&lt;li&gt;Image resolution differences resulted in a large discrepancy between platforms in the number of pixels available to train and validate the random forest model (Figure 5; Table 3). This limits the validity of strictly using the objective metrics to assess classification performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-3-number-of-training-and-validation-pixels-for-each-imagery-platform&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20table3_hu5cd6ffd7aa652f6b2394b39d678673a7_7490_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 3. Number of training and validation pixels for each imagery platform.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20table3_hu5cd6ffd7aa652f6b2394b39d678673a7_7490_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;563&#34; height=&#34;103&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 3. Number of training and validation pixels for each imagery platform.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;With these in mind, the study could be improved if ground truth reference data was gathered with a random sampling strategy at the time image collection. This would limit temporal differences and remove subjectivity from the data collection process.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-example-trainingvalidation-polygon-red-outline-overlaid-on-rgb-imagery-from-each-platform-to-demonstrate-the-difference-in-the-number-pixels-available-for-training-and-validation-across-platforms&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/capstone/Phrag%20pixels_hu8fd81baac1ea2d7cee53b349d53601a6_124382_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 5. Example training/validation polygon (red outline) overlaid on RGB imagery from each platform to demonstrate the difference in the number pixels available for training and validation across platforms.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/capstone/Phrag%20pixels_hu8fd81baac1ea2d7cee53b349d53601a6_124382_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;580&#34; height=&#34;203&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Example training/validation polygon (red outline) overlaid on RGB imagery from each platform to demonstrate the difference in the number pixels available for training and validation across platforms.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;future-work&#34;&gt;Future Work&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Collect ground reference data at the time of image collection&lt;/li&gt;
+&lt;li&gt;Employ a 5-band multispectral sensor to gather high-resolution UAS imagery in red, green, blue, red-edge, and near infrared wavelengths&lt;/li&gt;
+&lt;li&gt;Experiment with the number of land covers used in the classification&lt;/li&gt;
+&lt;li&gt;Perform additional optimizations to the image segmentation and random forest algorithms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Additional details on all aspects of this project, including references and citations can be found in the  &lt;a href=&#34;https://eneemann.github.io/files/Phragmites%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Data Model and Structures&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (Python)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Geocomputation</title>
+      <link>https://eneemann.github.io/project/geocomputation/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/geocomputation/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/NeuralNet%20-%20Presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/NeuralNet%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Wildfire is a common hazard faced by large regions in the western US due to the combination of vegetation/fuels, climate, topography, and ignition sources. In recent decades, with increases in population, communities and residential areas have continually expanded outward from urban centers. In the mountainous west, this expansion typically leads to additional development in the urban-wildland interface, thereby increasing the number of people exposed to the potential wildfire hazard. Identifying areas of wildfire susceptibility is important to ensure at-risk populations have emergency management plans and are able to mitigate fire risk as much as possible. The most effective method of identifying risk areas is producing maps by combining multiple wildfire parameters in a geographic information system (GIS). This study aims to quantify wildfire susceptibility in Utah and identify locations at greatest risk.&lt;/p&gt;
+&lt;p&gt;A multi-layer perceptron (MLP) neural network (NN) was chosen as the model for this study due to the recent success of other research projects in implementing NNs to predict forest fire susceptibility (Satir et al., 2015; Bui et al., 2017). Neural Networks are a natural choice for analyzing fire potential because they are good at approximating complex functions, are able to capture both linear and nonlinear relationships that exist between predictors and dependent variables, and adaptively learn from training data (Kantardzic, 2011; Satir et al., 2015).&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;All data used in this research came from free, publicly-available sources. The original data sets were initially gathered on disparate grids (different cell sizes, projections, dimensions, etc.) and were aligned to a uniform grid via projections in ESRI’s ArcMap software and with the use of ArcPy scripts. The data were also clipped down to the same geographic areas of interest (figure 1). This resulted in raster data sets with a Universal Transverse Mercator coordinate system in zone 12 North (UTM 12N). Each grid cell is 30 by 30 m with total dimensions of 2867 by 4251 pixels. The data was then resampled to a 90 by 90 m grid to alleviate computational challenges encountered on the full-resolution data.&lt;/p&gt;
+&lt;p&gt;A snapshot of all data sets used in the NN model is shown in Figure 1, below. A description of each data set can be found in the following paragraphs.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-snapshot-of-the-data-used-in-the-neural-network&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20all%20data_hu656fba59b79c0aa86e005e62203cc9eb_1942934_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 1. Snapshot of the data used in the neural network.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20all%20data_hu656fba59b79c0aa86e005e62203cc9eb_1942934_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1339&#34; height=&#34;819&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Snapshot of the data used in the neural network.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;Historical Fires&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Historical fire occurrence and burn severity data was collected from the Monitoring Trends in Burn Severity (MTBS) project. For this study, data from 2007-2016 was used to train the NN in order to place an emphasis on the most recent decade of fire data, which should best correspond with recent vegetation and infrastructure data. The ten annual data sets from 2007-2016 where then reclassified to only include burned areas (data value of 1-4), and summed up into a single data set. This resultant MTBS fire data set accounts for a combination of cumulative fire occurrences (multiple fires) and burn severities, called the historical fire index.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Terrain&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Digital Elevation Model (DEM) used in this study was downloaded from the Utah Wildfire Risk Assessment Portal (WRAP). Slope and aspect data sets were calculated from the DEM and used as inputs into the NN model. These three terrain-related data sets are important for the neural network model because each has an influence on wildfire and fire-related parameters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Vegetation&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vegetation data sets were also gathered from the Utah WRAP, each on the same UTM 12N, 30 m grid as the DEM data. The vegetation type data set categorizes each grid cell into one of 19 different categories. The vegetation type information is important for identifying the type of biomass available for burning, where some vegetation types burn more readily than others due to their biophysical properties (Bui et al., 2017). Two additional vegetation data sets, canopy cover (%) and bulk canopy density (kg/m&lt;sup&gt;3&lt;/sup&gt; * 100) are also included to help quantify the amount of biomass fuel that is available for burning on a grid cell.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Infrastructure&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A statewide Utah roads data set was gathered from the Utah Automated Geographic Reference Center (AGRC). The vector road features were used to calculate a distance-to-roads raster layer using Euclidean distance, meaning the minimum distance from a pixel to a road is calculated “as the crow flies.” Distance to roads is employed as a mechanism to measure the anthropogenic influence on wildfires and relates to the potential cause of wildfires (Satir et al., 2015; Bui et al., 2017).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Climate&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Climate data for this study was collected from Oregon State’s PRISM Climate Group. Monthly 30-year normal temperature and precipitation data sets were downloaded with 800 m grid cells. Only data from the months of June through October were used, representing the primary fire season in Utah. The monthly climate data sets, for both temperature and precipitation, were averaged into a single data set representing the mean conditions for the entire fire season. These data were resampled to 30 m grid cells with cubic interpolation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;methods&#34;&gt;Methods&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Data Preprocessing&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In order to prepare the data for input into the neural network model, several preprocessing steps were necessary. First, the data was scaled with a max-min normalization to place each data set between a range of 0 to 1. This was needed to ensure that the scale variations among the different data sets didn’t lead one or two variables to overwhelm the training process and contaminate the results.&lt;/p&gt;
+&lt;p&gt;The historical fire severity MTBS data, used for training the NN, was thinned in order to improve the training process. The vast majority of the area of interest is comprised of pixels that have not been burned (~98%), but it was desirable to have better balance among burned and unburned pixels in the training data set. For this reason, a subset of the entire AOI was used for training, where polygons around the burned areas where chosen to provide a more balanced mix of burned/unburned pixels (black polygons in figure 2). This also improved the efficiency of training the NN, as data set used for training was about 10% of the original size.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-historical-fire-severity-data-used-to-train-neural-network&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20training%20data_hu22d799954f9642f22a4cdb9d298a48bc_827087_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Historical fire severity data used to train neural network.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20training%20data_hu22d799954f9642f22a4cdb9d298a48bc_827087_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;659&#34; height=&#34;746&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Historical fire severity data used to train neural network.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;Artificial Neural Network&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The R statistical language was used to implement the NN using RStudio software, specifically with the ‘neuralnet’ library. A forward-feed MLP NN was employed with a resilient backpropagation learning algorithm. The network was “fully-connected,” meaning that every neuron in a layer was connected to every neuron in adjacent layers. The final NN architecture including 15 hidden layers and 1 output node, representing fire susceptibility. In addition to building a NN model with the full complement of input data sets, a second model was generated without the vegetation type data. This was done to examine the influence of vegetation type and its effect on the results. Other than the removal of the vegetation type categories, there were no other differences between the models. This model will hereafter be referred to a “NVT.”&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-1-final-categorization-of-fire-susceptibility-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20fire%20suscep%20table_hu586cf38722b3e238680593525ef779bd_13518_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 1. Final categorization of fire susceptibility model.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20fire%20suscep%20table_hu586cf38722b3e238680593525ef779bd_13518_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;478&#34; height=&#34;206&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 1. Final categorization of fire susceptibility model.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Finally, the output of each model was normalized with a min-max normalization method to put the Fire Susceptibility Index on a 0-1 scale. The results from each model were then categorized into 6 fire susceptibility groups with a natural breaks methodology. However, because the categories from the Original and NVT models were very similar, the final categorization for each model was standardized based on table 1. This created a consistent symbology for generating fire susceptibility maps and allowed for a more direct comparison between the two models.  A diagram showing the final architecture of the NVT model is shown in figure 3.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-final-neural-network-architecture-and-weights-for-the-no-vegetation-type-nvt-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20diagram_hu6cda6e5248879d9605d31148466bbdd1_286365_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Final neural network architecture and weights for the No Vegetation Type (NVT) model.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20diagram_hu6cda6e5248879d9605d31148466bbdd1_286365_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;740&#34; height=&#34;686&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Final neural network architecture and weights for the No Vegetation Type (NVT) model.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The output from each of the NN models showed results with many similarities and some notable differences. Both models had a strong histogram peak centered on 0.55 (not shown), but the distribution of values around that peak varies. In the Original model, the vast majority of pixels were placed between 0.4 and 0.8, with a narrower distribution and shorter tails. The NVT model, however, had a wider distribution and longer tails, with a generally broader range between 0.2 and 0.85. This indicates that the Original model has many more values scoring in the middle of the range, while the NVT model’s larger range has more pixels assessed with “very low” or “extreme” values. Visually, this is depicted in figure 4, which displays a map of the Wasatch Front region with the Fire Susceptibility Index calculated for each pixel. Compared to the Original Model, the NVT model has more values in the “extreme” category for high-threat areas such as Antelope Island in the Great Salt Lake, the northern Oquirrh Mountains, the Lake Mountains, and the mountain range south of Utah Lake. The NVT model also has a larger quantity of “very low” pixels along the high peaks of the Wasatch Front and Oquirrh Mountains.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-fire-susceptibility-index-from-the-original-and-nvt-models-with-census-tracts-outlined-in-black&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20maps_hu81f9ae02bb9c704784063ca68b3dfc2c_435562_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Fire Susceptibility Index from the Original and NVT models with census tracts outlined in black.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20maps_hu81f9ae02bb9c704784063ca68b3dfc2c_435562_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1247&#34; height=&#34;782&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Fire Susceptibility Index from the Original and NVT models with census tracts outlined in black.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Another notable difference between the models is the apparent influence of the vegetation type variable in the Original model and its lack of influence in the NVT model (where it was removed). The Original model has a generally noisier appearance, reflective of the noisy nature of the vegetation type variable, whereas the NVT model has smoother, more gradual transitions from low to high index values. The Original model also highlights the area between Salt Lake International Airport and the Great Salt Lake with “very high” and “extreme” index values, while the NVT model shows “very low” to “moderate” values. Here, the Original model appears to be picking up on increased fire susceptibility from the shrubland and chaparral vegetation types. The NVT model also tends to be more strongly influenced by elevation and aspect in mountainous regions, whereas the Original model is strongly influenced by vegetation type.&lt;/p&gt;
+&lt;p&gt;The influence of vegetation type is further examined by plotting variable importance based on NN connection weights from each model, as seen in figure 5. Indeed, the 10 most important variables in the Original model are vegetation types, which also make up 15 of the 18 most important variables. The top non-vegetation variables include elevation, precipitation, and distance to roads. For the NVT model, the top 3 variables are precipitation, elevation, and distance to roads. This comparison shows the importance of the vegetation type variables in the Original model, perhaps even indicating that it is over-influencing results.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-variable-importance-plots-for-original-and-nvt-models&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20variable%20import_hue98367a9209906c53f8b9db7635fee08_61967_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 5. Variable importance plots for Original and NVT models.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20variable%20import_hue98367a9209906c53f8b9db7635fee08_61967_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1162&#34; height=&#34;608&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Variable importance plots for Original and NVT models.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;A final, quantitative comparison of the Original and NVT models is presented in table 2. Mean squared error (MSE) and mean absolute error (MAE) metrics are calculated for each model using the subset of validation data from training the NN models. These metrics both indicate that the NVT model performs better as its errors are roughly half of the Original model’s error. The area under the curve (AUC) metric for the receiver operating characteristic (ROC) curve was also calculated for each model. This value accounts for a balance between true positive rate and false positive rate when using a broad range of thresholds to classify model results. The AUC metric indicates that the Original model (0.8875) outperformed the NVT model (0.8127) as the Original model had a higher value and was closer to the perfect score of one. These two sets of metrics (errors and AUC) show conflicting results without a clear winner on which model performs best. It should also be noted that these metrics only consider about 3% of all pixels in the study area, those used for validation of the training data.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-2-quantitative-results-comparing-original-and-nvt-models-mean-squared-error-mean-absolute-error-and-receiver-operating-characteristic-area-under-the-curve-calculated-from-the-validation-data-subset&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20metrics_hu811fc955c48ca94ca83dc3b46576de37_52031_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 2. Quantitative results comparing Original and NVT models. Mean Squared Error, Mean Absolute Error, and Receiver Operating Characteristic Area Under the Curve calculated from the validation data subset.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geocomputation/NeuralNet%20metrics_hu811fc955c48ca94ca83dc3b46576de37_52031_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;805&#34; height=&#34;146&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 2. Quantitative results comparing Original and NVT models. Mean Squared Error, Mean Absolute Error, and Receiver Operating Characteristic Area Under the Curve calculated from the validation data subset.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, this study demonstrates that the NN methodology produced reasonable results in quantifying wildfire susceptibility along Utah’s Wasatch Front. Particularly, it shows that vegetation type may play a prominent role in estimating wildfire susceptibility, as was noted by the model differences between the Original an NVT models. The inclusion of vegetation type often produced noisier results, reflecting the noisy nature of the vegetation type data itself. It also demonstrated local maxima that appeared to be directly tied to the presence of specific vegetation types (e.g., grassland, exotic herb, and chaparral). A comparison of variable importance from the Original and NVT models showed that vegetation type dominated the top 18 variables in the Original model (Figure X). This reliance on vegetation type may have actually been to the detriment of the model and other methods of employing vegetation information may improve results. The removal of vegetation type in the NVT model allowed other variables to dominate the model results, often varying by geographic location (e.g., elevation, aspect).&lt;/p&gt;
+&lt;p&gt;Areas with low fire susceptibility were often characterized by the presence of water, location near urban centers, or at very high elevations. Higher fire susceptibility regions tended to exist at moderate elevations and included the presence of specific vegetation types (e.g., grassland, chaparral) in the Original model. The NVT model tended to have a larger range in fire susceptibility values, with the greatest number of pixels in the “very low” and “extreme” categories.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Additional details on all aspects of this project, along with references and citations can be found in the  &lt;a href=&#34;https://eneemann.github.io/files/NeuralNet%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Spatial Analysis&lt;/li&gt;
+&lt;li&gt;Data Model and Structures&lt;/li&gt;
+&lt;li&gt;Database Design&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (R and Python)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Geoprocessing with Python</title>
+      <link>https://eneemann.github.io/project/geoprocessing-with-python/</link>
+      <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/geoprocessing-with-python/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Python%20-%20Presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Python%20-%20Export.pdf&#34; target=&#34;_blank&#34;&gt;Script Output Example&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;objective&#34;&gt;Objective&lt;/h2&gt;
+&lt;p&gt;The objective of this project was to create a Python script tool that answers the question: “Who Taxes Me?” for residents of Utah. To accomplish this, a Python script was written to accept an input address from a user (and optional property value) and provide a simple map of the location/property, a listing of entities that levy taxes on the property, and the levy rate and amount. The listing includes the tax levy as a percentage or, optionally, as a dollar amount if a property value is provided. The data is also presented in bar graph form to visually represent which entities levy higher taxes. Finally, the script produces an automated map of the property location and tax levy information in PDF format.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-image-source-httpswwwdavegranlundcomcartoons20050123property-tax-bills&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20comic_huad0d85cb37b5aa1899116904b79fc905_224656_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Image source: &amp;lt;a href=&amp;#34;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&amp;#34;&amp;gt;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&amp;lt;/a&amp;gt;&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20comic_huad0d85cb37b5aa1899116904b79fc905_224656_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;564&#34; height=&#34;432&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Image source: &lt;a href=&#34;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&#34;&gt;https://www.davegranlund.com/cartoons/2005/01/23/property-tax-bills/&lt;/a&gt;
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data-and-methods&#34;&gt;Data and Methods&lt;/h2&gt;
+&lt;p&gt;Data for this study was pulled from the Utah Automated Geographic Reference Center 
+&lt;a href=&#34;https://gis.utah.gov/data/economy/taxingareas/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(AGRC) web page&lt;/a&gt;, which has tax entity datasets available as shapefiles and geodatabase feature classes. The study area incorporates the entire state of Utah and the script works for any address located within the state. The Python code utilizes several different data structures and methods for completing the task, primarily employing the ArcPy module. Data structures include lists, dictionaries, and Pandas dataframes, while the spatial data format is an ESRI geodatabase and feature classes. An outline of the Python script workflow is outline in Figure 1.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-diagram-of-python-script-workflow&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20diagram_hu2e9c35a5b463200334962145fe87e575_120649_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 1. Diagram of Python script workflow&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20diagram_hu2e9c35a5b463200334962145fe87e575_120649_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1743&#34; height=&#34;908&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Diagram of Python script workflow
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The final results showing the script tool (Figure 2) a code snippet (Figure 3), and the exported PDF document (Figure 4) are shown below:&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-script-tool-interface-and-typical-processing-dialog-window-with-execution-time&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20inputs_huc974fce694d0577f1002a8c131679796_132225_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Script tool interface and typical processing dialog window with execution time.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20inputs_huc974fce694d0577f1002a8c131679796_132225_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;703&#34; height=&#34;516&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Script tool interface and typical processing dialog window with execution time.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-example-snippet-of-python-code&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20snippet_hu81e8343999e978ae98dcaab98e36a6e8_137261_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Example snippet of Python code.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20snippet_hu81e8343999e978ae98dcaab98e36a6e8_137261_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;512&#34; height=&#34;569&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Example snippet of Python code.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-example-pdf-exported-by-the-python-tool&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20pdf%20report_hua25fb07c5be305568a8e6a1fcd63edf1_479238_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Example PDF exported by the Python tool.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/geoprocessing-with-python/Python%20pdf%20report_hua25fb07c5be305568a8e6a1fcd63edf1_479238_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;684&#34; height=&#34;906&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Example PDF exported by the Python tool.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;python-libraries&#34;&gt;Python Libraries&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ArcPy&lt;/li&gt;
+&lt;li&gt;Numpy&lt;/li&gt;
+&lt;li&gt;Pandas&lt;/li&gt;
+&lt;li&gt;Matplotlib&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (Python)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Spatial Modeling</title>
+      <link>https://eneemann.github.io/project/spatial-modeling/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/spatial-modeling/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Fire-Evac%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Fire-Evac%20Model%20ODD%20Protocol.pdf&#34; target=&#34;_blank&#34;&gt;Model Description Document&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Fire-Evac%20NetLogo%20code.txt&#34; target=&#34;_blank&#34;&gt;NetLogo Code&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;In recent decades, the population in the US has grown outward from urban centers and begun to encroach on the urban-wildland interface, putting developments and communities in jeopardy of being affected by wildfires. This has become more common occurrence and will continue to be as populations increase along with extreme precipitation and drought events. To help analyze this problem we hope to build a model to simulate wildfire spread and community evacuation within a wildland-urban setting. This type of model could be useful when attempting to make planning decisions and informing populations of risk when developing within these areas.&lt;/p&gt;
+&lt;p&gt;Eagle Mountain, Utah is relatively new area of development with rapid growth along the urban-wildlife interface. This growth puts some locations at risk of wildfire due to their proximity to vulnerable vegetation in the nearby hills. This research seeks to model the potential impacts of wildfire on the surrounding area and to recommend some evacuation strategies to local residents. An approach for modeling wildfire dispersion patterns can be done with a percolation model. The percolation model will combine vegetation, elevation and fire threat layers to observe the probability of wildfire occurrence and its characteristics within the study area. Agent based modeling can be used to find out what evacuation strategies will work best under the local context. It can be assumed that each household will possess one vehicle (agent) and the optimal routing options (ruleset) to evacuate the total number of vehicles will be designated through this study. Implementing this model will help to observe how wildfire from varying points of origin will produce different routing patterns.&lt;/p&gt;
+&lt;h2 id=&#34;data-and-methods&#34;&gt;Data and Methods&lt;/h2&gt;
+&lt;p&gt;The model designed in this project simulates wildfire ignition and spread in the vicinity of Eagle Mountain, Utah and subsequent evacuation using a simplified road network. To test the model and learn how changes in parameters impact the simulation outcome, a suite of experiments were run using the NetLogo BehaviorSpace tool. Datasets used within the model include a Fire Threat raster from Utah’s Department of Natural Resources (DNR), which is used to determine where the initial fire starts. Vegetation data from the DNR is used to set the vegetation density, which affects the probability that patches neighboring a currently burning patch catch fire. A digital elevation model from DNR is also used to modify the probability of fire spread. Finally, a road network from the city of Eagle Mountain was simplified and used as the road network for vehicles evacuating neighborhoods.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-table-1-parameter-values-used-in-model-setup-bracketed-values-indicate-a-range-notated-in-the-following-manner-low-value-step-high-value&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20table1_hu9400e2a43360656162e2c329f483d548_11638_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Table 1. Parameter values used in model setup. Bracketed values indicate a range, notated in the following manner: [low-value step high-value].&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20table1_hu9400e2a43360656162e2c329f483d548_11638_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;465&#34; height=&#34;230&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Table 1. Parameter values used in model setup. Bracketed values indicate a range, notated in the following manner: [low-value step high-value].
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The model has adjustable parameters for the probability of fire ignition in each cardinal direction (e.g. “ignitionS”), the probability of fire extinction (“extinction”) at each time step, and the probability that exiting cars will correctly follow their evacuation route when they approach an intersection (“q”). To experiment with the model, two primary experiments were designed, one representing a fire in southwesterly winds and one representing a fire in northwesterly winds. These two scenarios represent the most likely directions for strong winds during a wildfire event. This is particularly true for the southwesterly scenario, which typically occurs in a dry environment ahead of approaching low pressure systems. These experiments are run over a variety of settings for “extinction” and “q”, with each permutation run for 25 iterations. Table 1 describes the model setup; brackets indicate a range of values in the following manner: [low-value step high-value]. An example screenshot of a typical model run in mid-simulation is shown in Figure 1.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-example-screenshot-of-typical-model-run&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20model%20snapshot_hub143b773a2ac9ddd875c5c9b18f7cc1f_113803_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 1. Example screenshot of typical model run.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20model%20snapshot_hub143b773a2ac9ddd875c5c9b18f7cc1f_113803_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1141&#34; height=&#34;855&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Example screenshot of typical model run.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The outcomes from the two model scenarios showed several similar results, but also indicated a few subtle differences. Based on the combination of parameters used in the experiment, the most frequent model result burned less than 2.5% of the landscape (34% of simulations) and finished with 0 burned cars (45.3%; Figure 2). In fact, in 25.2% of simulations, the fire did not cross the neighborhood buffer and no evacuation was initiated. As expected, the percentage of the landscape and the number of cars burned decreased as the fire extinction rate increased (Figure 3). Both of these statistics were maximized when the fire extinction rate was zero. Interestingly, the southwesterly wind scenario (2.87) resulted in an average of 1 more car being burned per simulation than the northwesterly wind scenario (1.82). Figure 3 also indicates a higher median number of cars burned in the southwesterly scenario for each extinction value below 0.4.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-histogram-of-percent-landscape-and-cars-burned-by-scenario&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig2_hu4bab13aef2bbc7c6d232904aa550380e_76869_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Histogram of percent landscape and cars burned by scenario.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig2_hu4bab13aef2bbc7c6d232904aa550380e_76869_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;967&#34; height=&#34;365&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Histogram of percent landscape and cars burned by scenario.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-box-plots-of-percent-landscape-and-number-of-cars-burned-by-varying-levels-of-extinction-in-southwesterly-and-northwesterly-wind-scenarios&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig3_hu9865bfa057e231e5513b808be91f4715_72455_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Box plots of percent landscape and number of cars burned by varying levels of extinction in southwesterly and northwesterly wind scenarios.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig3_hu9865bfa057e231e5513b808be91f4715_72455_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;425&#34; height=&#34;653&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Box plots of percent landscape and number of cars burned by varying levels of extinction in southwesterly and northwesterly wind scenarios.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Of the simulations resulting in evacuation, there was a weak relationship between the number of cars burned and “q” (Figure 4), but it is not likely significant. This subtle trend indicates that fewer cars burn at higher “q” due to more efficient evacuation, while more cars burn at lower “q” due to more wrong turns and a longer evacuation process. This is also reflected in the duration of the simulation, where wrong turns (lower “q”) lead to slower evacuation and a longer median simulation (Figure 4).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-box-plots-of-number-of-cars-burned-and-simulation-duration-by-varying-levels-of-q-in-southwesterly-and-northwesterly-wind-scenarios-the-q-variable-represents-the-probability-that-a-vehicle-makes-the-correct-decision-at-an-intersection-to-evacuate-as-efficiently-as-possible&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig4_hu02e6f8f2370ff6651906119a34f47fb4_48518_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 4. Box plots of number of cars burned and simulation duration by varying levels of “q” in southwesterly and northwesterly wind scenarios. The “q” variable represents the probability that a vehicle makes the correct decision at an intersection to evacuate as efficiently as possible.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig4_hu02e6f8f2370ff6651906119a34f47fb4_48518_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;575&#34; height=&#34;873&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Box plots of number of cars burned and simulation duration by varying levels of “q” in southwesterly and northwesterly wind scenarios. The “q” variable represents the probability that a vehicle makes the correct decision at an intersection to evacuate as efficiently as possible.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Finally, Figure 5 shows plots (only for simulations with evacuation) of average percentage of landscape burned, cars burned, and simulation duration as a function of both extinction and “q”. For both wind scenarios, the maximum percentage of the landscape burned occurs when “q” is minimized and the extinction rate is zero. This is expected as low “q” values prolong the simulation and the fires never actually burn out when the extinction rate is zero. The southwesterly scenario also has a greater maximum percentage burned. This is likely because the fire is designed to start near the western and southern edges of the model domain, leaving more land downwind of the fire origin when there is a southerly component to the wind. A northerly wind component tends to push fires starting near the southern border out of the model domain. Intuitively, the maximum number of cars burned occurs at the minimums of extinction rate and “q.” This combination leads to more burned cars due to widespread fires and the slow evacuation from cars making wrong turns at intersections, as discussed previously. For the simulation length, there appears to a “sweet spot” of maximum duration where low, but non-zero extinction rates lead to a slow burning fire and low “q” values result in slower evacuations. Duration quickly drops off at higher extinction rates (0.4+) where the fires burn out quickly. The northwesterly wind scenario also had a higher maximum average simulation length than the southwesterly scenario, though it’s not entire clear why. Perhaps the low extinction rates allow fires starting on the southern periphery of the domain to burn back northward against the wind, resulting in slow-but-steady progression and long simulations when “q” is low.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-percentage-of-landscape-burned-top-cars-burned-middle-and-simulation-duration-bottom-as-a-function-of-both-extinction-and-q&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig5_hu177ca9359dbe2d91541d4c2f44b4a221_55718_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 5. Percentage of landscape burned (top), cars burned (middle) and simulation duration (bottom) as a function of both extinction and “q”.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/spatial-modeling/Fire-Evac%20fig5_hu177ca9359dbe2d91541d4c2f44b4a221_55718_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;404&#34; height=&#34;919&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Percentage of landscape burned (top), cars burned (middle) and simulation duration (bottom) as a function of both extinction and “q”.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;While this model simulation is far from realistic, it does represent some of the basic processes in the real world. These include fire spread due to properties of vegetation, wind, and elevation, and first draft vehicle evacuation logic. Recommended future work on the model would include better scaling of fire/vehicle speeds, more robust traffic logic, and evacuations by specific neighborhood. Though relatively simple, the current model is still capable of reproducing some realistic results. This includes larger, longer-burning fires when the extinction probability is low or zero. It also demonstrates that vehicles taking wrong turns while evacuating the neighborhood will take longer to exit and, therefore, be more likely to be burned in the fire. Finally, it indicates that Eagle Mountain may be at greater risk from a fire in southwesterly winds, which is likely to burn a larger area and endanger more vehicles, than a fire in northwesterly winds.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Additional details on the methodology and results, and all references can be found in the &lt;a href=&#34;https://eneemann.github.io/files/Fire-Evac%20-%20Full%20Report.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Model Building&lt;/li&gt;
+&lt;li&gt;Data Model and Structures&lt;/li&gt;
+&lt;li&gt;Project Design&lt;/li&gt;
+&lt;li&gt;Project Management&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (NetLogo)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Web GIS</title>
+      <link>https://eneemann.github.io/project/web-gis/</link>
+      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/web-gis/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Web%20GIS%20-%20presentation.pdf&#34; target=&#34;_blank&#34;&gt;Slides&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Note: the servers that hosted the web page for this project were retired in 2018, so a live version of the page no longer exists&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As a result of changes in climate and population growth, there has been increased competition for freshwater in the Western U.S. in recent decades. This trend is likely to intensity in the future as populations continue to grow and uncertainty surrounding the climate in the Intermountain West continues. The objective of this project was to investigate county-level water consumption in Montana through the creation of a web map (Figure 1). Specifically, surface water usage and sources were mapped and explored.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-1-screenshot-of-final-web-page&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20full%20page%20big_hu88c3335c433c88177a4d3bd240699562_1087208_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 1. Screenshot of final web page.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20full%20page%20big_hu88c3335c433c88177a4d3bd240699562_1087208_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1075&#34; height=&#34;752&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 1. Screenshot of final web page.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data--methods&#34;&gt;Data &amp;amp; Methods&lt;/h2&gt;
+&lt;p&gt;The primary data sets for this project include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Excel spreadsheet with county-level water consumption statistics from 2010&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana county boundaries (polygons)&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana rivers and streams (polylines)&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana lakes (polygons)&lt;/li&gt;
+&lt;li&gt;Shapefile of Montana cities (points)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;First, to prepare the data for consumption by the web map, the spreadsheet was joined to the counties shapefile to link surface water statistics to their geographic region.  Second, all shapefiles were loaded into an ArcMap document, labelled, and symbolized.  Third, the data was published as a map service, which was later consumed by the web page using the ArcGIS JavaScript API v4.3.  Additional organization of the web page and customization of features was completed through a combination of HTML, CSS, and JavaScript coding (Figure 2).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-snapshot-of-javascript-code&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20code_hu1ecb3590bf79ac1bad16614ec3727eeb_42424_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 2. Snapshot of JavaScript code.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20code_hu1ecb3590bf79ac1bad16614ec3727eeb_42424_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;662&#34; height=&#34;355&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Snapshot of JavaScript code.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;functionality&#34;&gt;Functionality&lt;/h2&gt;
+&lt;p&gt;The finished web page had the following functionality:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Query information with a pop-up window on click (Figure 3)
+&lt;ul&gt;
+&lt;li&gt;County Name&lt;/li&gt;
+&lt;li&gt;Population&lt;/li&gt;
+&lt;li&gt;Area&lt;/li&gt;
+&lt;li&gt;Surface Freshwater Withdrawals&lt;/li&gt;
+&lt;li&gt;Total Water Withdrawals&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Layer list toggle on/off capability&lt;/li&gt;
+&lt;li&gt;Basemap toggle between “streets” and “satellite”&lt;/li&gt;
+&lt;li&gt;Legend display&lt;/li&gt;
+&lt;li&gt;Zoom in/out by scroll or widget&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-example-of-pop-up-functionality&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20popup_hub4b8205216ebd3cd94e9c0355cfd701b_96011_2000x2000_fit_lanczos_2.PNG&#34; data-caption=&#34;Figure 3. Example of pop-up functionality.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/web-gis/Web%20GIS%20popup_hub4b8205216ebd3cd94e9c0355cfd701b_96011_2000x2000_fit_lanczos_2.PNG&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;726&#34; height=&#34;427&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Example of pop-up functionality.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;data-sources&#34;&gt;Data Sources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Montana State Library Geographic Information Clearinghouse 
+&lt;a href=&#34;http://geoinfo.msl.mt.gov/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://geoinfo.msl.mt.gov/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;Cartography and Graphic Design&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Programming and Scripting (HTML, CSS, JavaScript)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Advanced Geographic Data Analysis</title>
+      <link>https://eneemann.github.io/project/advanced-geographic-data-analysis/</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>https://eneemann.github.io/project/advanced-geographic-data-analysis/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://eneemann.github.io/files/Uber%20Final%20Report%20w%20Figures.pdf&#34; target=&#34;_blank&#34;&gt;Final Report&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;As Uber and other rideshare platforms continue to grow in popularity, the companies amass tremendous amounts of data from the thousands of rides logged every day in major cities (Dogtiev 2017). This data would be extremely useful for municipality planners and engineers, as well as Uber drivers alike. However, Uber understands the power of this and keeps a close hold on the raw data. This study takes a more detailed look at Uber data that was manually-collected in Salt Lake City from August to November of 2017. The goal is to help answer questions, such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Where should drivers position themselves to get the highest-earning rides?&lt;/li&gt;
+&lt;li&gt;How accurately can a trip’s earnings be predicted based on a few variables?&lt;/li&gt;
+&lt;li&gt;Do trip distances, tips, or earnings differ by rider gender?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A variety of data analysis methods were employed to interrogate the data, including: summary statistics, linear regression, generalized linear models (GLMs), regression trees and random forests, principal component analysis (PCA), geostatistics, and spatial point patterns. These techniques have been applied in a variety of ways throughout the scientific literature over the past few decades and were useful in examining the Uber data.&lt;/p&gt;
+&lt;h2 id=&#34;data-and-methods&#34;&gt;Data and Methods&lt;/h2&gt;
+&lt;p&gt;Data was collected from 125 Uber trips between August and November 2017, primarily on Friday mornings between 5:30-9:30am. Of these 125 trips, the analysis data set was trimmed down to those trips starting in Salt Lake County (117), while the remaining trips (7) were used for model verification. The spatial data were collected with a smartphone GPS application and the attributes were gathered from the Uber app and website. These attributes include trip date, start/end time, duration, distance, driver earning total, surge multiplier, tip, rider gender, latitude, longitude, and an airport trip identifier. Some analyses were conducted on the trip’s total earnings, while other methods used a corrected (standardized) value with the surge multiplier and tips removed. This was done in an effort to remove the seemingly random components of the total earnings. Polyline features from the GPS traces were collected, but the geographical analysis presented here is limited to the trip starting points (and ending points) and their associated attributes (Figure 1).&lt;/p&gt;
+&lt;p&gt;Of the data collected, a typical trip lasted around 12.5 minutes, covering 4-5 miles with no tip or surge multiplier, resulting in a total driver earning of $5-6. While this trip is considered “typical,” there are a wide variety of trip total earnings, corrected earnings (tip &amp;amp; surge multiplier removed), distances, durations, and tips, as shown in the histograms below (Figure 2). Trip earnings and tips tend to follow an exponential distribution, while distance and duration are closer to normal or gamma distributions. The differences in these distributions created challenges in analyzing the data, resulting in some caveats for interpretation.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-2-histograms-of-total-earning-left-distance-center-and-duration-right-for-all-uber-trips&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber_histograms_hu0867e4a851a949c7b804a1ef93319262_47073_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 2. Histograms of total earning (left), distance (center), and duration (right) for all Uber trips.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber_histograms_hu0867e4a851a949c7b804a1ef93319262_47073_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1270&#34; height=&#34;409&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 2. Histograms of total earning (left), distance (center), and duration (right) for all Uber trips.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;While only 16.2% of Uber trips end at the airport, airport trips result in higher driver earnings (Figure 3); the mean airport trip earns $11.09, compared to $5.83 for non-airport trips. A T-test confirms that this is a statistically significant result at greater than 99.9% confidence. Additionally, males make up 53.8% of Uber riders, but differences in driver earnings based on rider gender are not statistically significant. Driver total earnings most closely correlated with trip distance, and Figures 4 shows a scatterplot of corrected earnings by distance. These plots also break out gender by color with males (females) in blue (pink), and airport trips by size where non-airport trips (airport trips) are small dots (large dots).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-3-box-and-whiskers-plots-of-non-airport-and-airport-uber-trips&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20Box-Whiskers_hud9f12a4c9a6ba64bd886f234a38d8ffb_27212_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 3. Box and whiskers plots of non-airport and airport Uber trips.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20Box-Whiskers_hud9f12a4c9a6ba64bd886f234a38d8ffb_27212_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;532&#34; height=&#34;531&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 3. Box and whiskers plots of non-airport and airport Uber trips.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-4-scatterplot-of-corrected-uber-trip-earnings-by-distance-with-malefemale-rider-and-airportnot-airport-trips-symbolized-distinctly&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20corrected%20earning%20%28scatter%29_hu66c14d421320732acdf5a2d0e7fe08c3_44793_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 4. Scatterplot of corrected Uber trip earnings by distance, with male/female rider, and airport/not-airport trips symbolized distinctly.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20corrected%20earning%20%28scatter%29_hu66c14d421320732acdf5a2d0e7fe08c3_44793_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;522&#34; height=&#34;528&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 4. Scatterplot of corrected Uber trip earnings by distance, with male/female rider, and airport/not-airport trips symbolized distinctly.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Several methods that were used to analyze the Uber data will be described in the following paragraphs. First, a handful of prediction models will be discussed, followed by geostatistical and spatial point pattern analysis. The first two prediction models were built with linear regression. One was a very simple model that relied purely on distance to predict total earnings &amp;ndash; distance is known to be the largest component of Uber’s actual driver earning calculation. The second model used stepwise automatic selection starting from a null model and with a total scope of 8 variables (distance, duration, surge, tip, gender, airport, longitude, latitude). This resulted in an “optimum” model with 5 variables (distance, duration, tip, surge, gender). The third model was a GLM that used a Poisson distribution and log link function. The fourth and fifth models used regression trees, the fourth of which used a single tree, pruned to a moderately aggressive level of complexity. The fifth model employed a random forest of 500 trees, with 5 variables considered at each split. Finally, principal component regression was used for the sixth model. This applied 4 components resulting from the PCA that accounted for 98.4% of the variance in the data. Once all models were built, they were used to predict total earnings and log-earnings from the 7 data points that fell outside of Salt Lake County.&lt;/p&gt;
+&lt;p&gt;The next set of analyses consisted of geostatistical prediction and simulation. Ordinary kriging was initially done to estimate total earnings across Salt Lake City based on trip starting points. This was followed by conditional kriging simulations done to estimate the probability of earnings above a certain threshold. Both start and end points were used for kriging simulations, but the end point data proved much more difficult to fit with variograms, resulting in limited success.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The prediction model results showed a variety of performance skill in estimating the total earnings of the 7 Uber trips that fell outside of Salt Lake County. Using root mean squared errors (RMSE) as the primary metric, the optimized linear model performed the best, followed by the PCR model and random forest model (not shown). All models showed improved performance for log-earnings (vs. total earnings; not shown), except for the PCR model (Figure 5). In this case, the random forest model was the best, followed by the single regression tree and the optimum linear model. The fact that nearly all models performed better with log-earnings, demonstrates that using log-earnings as the dependent variable is probably the best choice for regression modeling, given the distribution mentioned previously.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-5-scatterplot-of-predicted-uber-trip-total-earning-by-model-left-and-rmse-bar-charts-by-model-right&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20model%20results_hu694e3ade28c05c55ee4dd22a95a07636_35255_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 5. Scatterplot of predicted Uber trip total earning by model (left) and RMSE bar charts by model (right).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20model%20results_hu694e3ade28c05c55ee4dd22a95a07636_35255_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;812&#34; height=&#34;404&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 5. Scatterplot of predicted Uber trip total earning by model (left) and RMSE bar charts by model (right).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;A plot of total earnings based on start points were used to interpolate a surface of values across the Salt Lake Valley with an ordinary kriging technique (not shown). The ordinary kriging results showed relatively high cross-validation errors (not shown) even though the residuals appeared random. A kriging simulation of 50 iterations was conducted across the region to predict the probability of total earnings greater than $8 (Figure 6). The simulation identified similar regions as the ordinary kriging, with the addition of a fourth high-probability region between downtown and the airport. The highest probabilities, approaching 80%, are shown near Kearns and on the east side north of I-80. Total earnings for the Uber end points (Figure 6) were also used for kriging simulations. Figure 22 shows the results, with the airport identified by high probabilities of earnings greater than $8 at 90%. Another, broad region of high probabilities covers the southeast quadrant of the Salt Lake Valley, where only a few data points exist. However, the small sample size and poor variogram fit (not shown) for the end point data make this result highly suspect. The area between downtown Salt Lake City and the university also stands out as trips ending there have very low probabilities (less than 10%) of exceeding $8.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-figure-6-kriging-simulations-showing-the-probability-of-uber-trip-earnings-greater-than-8-based-on-trip-start-points-left-and-end-points-right&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20kriging%20simulations_hu2aa168dd79105bb9f6469958ddb069d1_461943_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Figure 6. Kriging simulations showing the probability of Uber trip earnings greater than $8 based on trip start points (left) and end points (right).&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://eneemann.github.io/project/advanced-geographic-data-analysis/Uber%20kriging%20simulations_hu2aa168dd79105bb9f6469958ddb069d1_461943_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;804&#34; height=&#34;600&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Figure 6. Kriging simulations showing the probability of Uber trip earnings greater than $8 based on trip start points (left) and end points (right).
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;All references and citations can be found in the &lt;a href=&#34;https://eneemann.github.io/files/Uber%20Final%20Report%20w%20Figures.pdf&#34; target=&#34;_blank&#34;&gt;Full Report&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;msgis-program-skills&#34;&gt;MSGIS Program Skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GIS Analysis&lt;/li&gt;
+&lt;li&gt;Spatial Data and Algorithms&lt;/li&gt;
+&lt;li&gt;GIS Workflow&lt;/li&gt;
+&lt;li&gt;Spatial Analysis&lt;/li&gt;
+&lt;li&gt;Data Models and Structures&lt;/li&gt;
+&lt;li&gt;Database Design&lt;/li&gt;
+&lt;li&gt;Communication Skills&lt;/li&gt;
+&lt;li&gt;Scripting (R)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1416 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Erik Neemann">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Uber Trip Analysis">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://eneemann.github.io/project/advanced-geographic-data-analysis/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://eneemann.github.io/project/advanced-geographic-data-analysis/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@Erik_AGRC">
+  <meta property="twitter:creator" content="@Erik_AGRC">
+  
+  <meta property="og:site_name" content="Neemann MSGIS">
+  <meta property="og:url" content="https://eneemann.github.io/project/advanced-geographic-data-analysis/">
+  <meta property="og:title" content="Advanced Geographic Data Analysis | Neemann MSGIS">
+  <meta property="og:description" content="Uber Trip Analysis"><meta property="og:image" content="https://eneemann.github.io/project/advanced-geographic-data-analysis/featured.jpg">
+  <meta property="twitter:image" content="https://eneemann.github.io/project/advanced-geographic-data-analysis/featured.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2017-12-13T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2017-12-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eneemann.github.io/project/advanced-geographic-data-analysis/"
+  },
+  "headline": "Advanced Geographic Data Analysis",
+  
+  "image": [
+    "https://eneemann.github.io/project/advanced-geographic-data-analysis/featured.jpg"
+  ],
+  
+  "datePublished": "2017-12-13T00:00:00Z",
+  "dateModified": "2017-12-13T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Erik Neemann"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Neemann MSGIS",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eneemann.github.io/images/icon_huee0d58dfa425d3d852a873bdf8ff5f8e_5659_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Uber Trip Analysis"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Advanced Geographic Data Analysis | Neemann MSGIS</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  
+  
+  
+    <script>window.staDarkLightChooser = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Neemann MSGIS</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Neemann MSGIS</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Advanced Geographic Data Analysis</h1>
+
+  
+  <p class="page-subtitle">Analyzing Manually-Collected Uber Data to Maximize Driver Earnings in Salt Lake City</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 13, 2017
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 732px;">
+  <div style="position: relative">
+    <img src="/project/advanced-geographic-data-analysis/featured_hua952a1803ef0758fc134eae9df291f65_183691_720x0_resize_q90_lanczos.jpg" alt="" class="featured-image">
+    <span class="article-header-caption">Figure 1. Uber trip start and end points, route line density, and end point density.</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <ul>
+<li><strong><a href="/files/Uber%20Final%20Report%20w%20Figures.pdf" target="_blank">Final Report</a></strong></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>As Uber and other rideshare platforms continue to grow in popularity, the companies amass tremendous amounts of data from the thousands of rides logged every day in major cities (Dogtiev 2017). This data would be extremely useful for municipality planners and engineers, as well as Uber drivers alike. However, Uber understands the power of this and keeps a close hold on the raw data. This study takes a more detailed look at Uber data that was manually-collected in Salt Lake City from August to November of 2017. The goal is to help answer questions, such as:</p>
+<ul>
+<li>Where should drivers position themselves to get the highest-earning rides?</li>
+<li>How accurately can a trip’s earnings be predicted based on a few variables?</li>
+<li>Do trip distances, tips, or earnings differ by rider gender?</li>
+</ul>
+<p>A variety of data analysis methods were employed to interrogate the data, including: summary statistics, linear regression, generalized linear models (GLMs), regression trees and random forests, principal component analysis (PCA), geostatistics, and spatial point patterns. These techniques have been applied in a variety of ways throughout the scientific literature over the past few decades and were useful in examining the Uber data.</p>
+<h2 id="data-and-methods">Data and Methods</h2>
+<p>Data was collected from 125 Uber trips between August and November 2017, primarily on Friday mornings between 5:30-9:30am. Of these 125 trips, the analysis data set was trimmed down to those trips starting in Salt Lake County (117), while the remaining trips (7) were used for model verification. The spatial data were collected with a smartphone GPS application and the attributes were gathered from the Uber app and website. These attributes include trip date, start/end time, duration, distance, driver earning total, surge multiplier, tip, rider gender, latitude, longitude, and an airport trip identifier. Some analyses were conducted on the trip’s total earnings, while other methods used a corrected (standardized) value with the surge multiplier and tips removed. This was done in an effort to remove the seemingly random components of the total earnings. Polyline features from the GPS traces were collected, but the geographical analysis presented here is limited to the trip starting points (and ending points) and their associated attributes (Figure 1).</p>
+<p>Of the data collected, a typical trip lasted around 12.5 minutes, covering 4-5 miles with no tip or surge multiplier, resulting in a total driver earning of $5-6. While this trip is considered “typical,” there are a wide variety of trip total earnings, corrected earnings (tip &amp; surge multiplier removed), distances, durations, and tips, as shown in the histograms below (Figure 2). Trip earnings and tips tend to follow an exponential distribution, while distance and duration are closer to normal or gamma distributions. The differences in these distributions created challenges in analyzing the data, resulting in some caveats for interpretation.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-2-histograms-of-total-earning-left-distance-center-and-duration-right-for-all-uber-trips">
+
+
+  <a data-fancybox="" href="/project/advanced-geographic-data-analysis/Uber_histograms_hu0867e4a851a949c7b804a1ef93319262_47073_2000x2000_fit_lanczos_2.png" data-caption="Figure 2. Histograms of total earning (left), distance (center), and duration (right) for all Uber trips.">
+
+
+  <img data-src="/project/advanced-geographic-data-analysis/Uber_histograms_hu0867e4a851a949c7b804a1ef93319262_47073_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1270" height="409">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 2. Histograms of total earning (left), distance (center), and duration (right) for all Uber trips.
+  </figcaption>
+
+
+</figure>
+
+<p>While only 16.2% of Uber trips end at the airport, airport trips result in higher driver earnings (Figure 3); the mean airport trip earns $11.09, compared to $5.83 for non-airport trips. A T-test confirms that this is a statistically significant result at greater than 99.9% confidence. Additionally, males make up 53.8% of Uber riders, but differences in driver earnings based on rider gender are not statistically significant. Driver total earnings most closely correlated with trip distance, and Figures 4 shows a scatterplot of corrected earnings by distance. These plots also break out gender by color with males (females) in blue (pink), and airport trips by size where non-airport trips (airport trips) are small dots (large dots).</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-3-box-and-whiskers-plots-of-non-airport-and-airport-uber-trips">
+
+
+  <a data-fancybox="" href="/project/advanced-geographic-data-analysis/Uber%20Box-Whiskers_hud9f12a4c9a6ba64bd886f234a38d8ffb_27212_2000x2000_fit_lanczos_2.png" data-caption="Figure 3. Box and whiskers plots of non-airport and airport Uber trips.">
+
+
+  <img data-src="/project/advanced-geographic-data-analysis/Uber%20Box-Whiskers_hud9f12a4c9a6ba64bd886f234a38d8ffb_27212_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="532" height="531">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 3. Box and whiskers plots of non-airport and airport Uber trips.
+  </figcaption>
+
+
+</figure>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-4-scatterplot-of-corrected-uber-trip-earnings-by-distance-with-malefemale-rider-and-airportnot-airport-trips-symbolized-distinctly">
+
+
+  <a data-fancybox="" href="/project/advanced-geographic-data-analysis/Uber%20corrected%20earning%20%28scatter%29_hu66c14d421320732acdf5a2d0e7fe08c3_44793_2000x2000_fit_lanczos_2.png" data-caption="Figure 4. Scatterplot of corrected Uber trip earnings by distance, with male/female rider, and airport/not-airport trips symbolized distinctly.">
+
+
+  <img data-src="/project/advanced-geographic-data-analysis/Uber%20corrected%20earning%20%28scatter%29_hu66c14d421320732acdf5a2d0e7fe08c3_44793_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="522" height="528">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 4. Scatterplot of corrected Uber trip earnings by distance, with male/female rider, and airport/not-airport trips symbolized distinctly.
+  </figcaption>
+
+
+</figure>
+
+<p>Several methods that were used to analyze the Uber data will be described in the following paragraphs. First, a handful of prediction models will be discussed, followed by geostatistical and spatial point pattern analysis. The first two prediction models were built with linear regression. One was a very simple model that relied purely on distance to predict total earnings &ndash; distance is known to be the largest component of Uber’s actual driver earning calculation. The second model used stepwise automatic selection starting from a null model and with a total scope of 8 variables (distance, duration, surge, tip, gender, airport, longitude, latitude). This resulted in an “optimum” model with 5 variables (distance, duration, tip, surge, gender). The third model was a GLM that used a Poisson distribution and log link function. The fourth and fifth models used regression trees, the fourth of which used a single tree, pruned to a moderately aggressive level of complexity. The fifth model employed a random forest of 500 trees, with 5 variables considered at each split. Finally, principal component regression was used for the sixth model. This applied 4 components resulting from the PCA that accounted for 98.4% of the variance in the data. Once all models were built, they were used to predict total earnings and log-earnings from the 7 data points that fell outside of Salt Lake County.</p>
+<p>The next set of analyses consisted of geostatistical prediction and simulation. Ordinary kriging was initially done to estimate total earnings across Salt Lake City based on trip starting points. This was followed by conditional kriging simulations done to estimate the probability of earnings above a certain threshold. Both start and end points were used for kriging simulations, but the end point data proved much more difficult to fit with variograms, resulting in limited success.</p>
+<h2 id="results">Results</h2>
+<p>The prediction model results showed a variety of performance skill in estimating the total earnings of the 7 Uber trips that fell outside of Salt Lake County. Using root mean squared errors (RMSE) as the primary metric, the optimized linear model performed the best, followed by the PCR model and random forest model (not shown). All models showed improved performance for log-earnings (vs. total earnings; not shown), except for the PCR model (Figure 5). In this case, the random forest model was the best, followed by the single regression tree and the optimum linear model. The fact that nearly all models performed better with log-earnings, demonstrates that using log-earnings as the dependent variable is probably the best choice for regression modeling, given the distribution mentioned previously.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-5-scatterplot-of-predicted-uber-trip-total-earning-by-model-left-and-rmse-bar-charts-by-model-right">
+
+
+  <a data-fancybox="" href="/project/advanced-geographic-data-analysis/Uber%20model%20results_hu694e3ade28c05c55ee4dd22a95a07636_35255_2000x2000_fit_lanczos_2.png" data-caption="Figure 5. Scatterplot of predicted Uber trip total earning by model (left) and RMSE bar charts by model (right).">
+
+
+  <img data-src="/project/advanced-geographic-data-analysis/Uber%20model%20results_hu694e3ade28c05c55ee4dd22a95a07636_35255_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="812" height="404">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 5. Scatterplot of predicted Uber trip total earning by model (left) and RMSE bar charts by model (right).
+  </figcaption>
+
+
+</figure>
+
+<p>A plot of total earnings based on start points were used to interpolate a surface of values across the Salt Lake Valley with an ordinary kriging technique (not shown). The ordinary kriging results showed relatively high cross-validation errors (not shown) even though the residuals appeared random. A kriging simulation of 50 iterations was conducted across the region to predict the probability of total earnings greater than $8 (Figure 6). The simulation identified similar regions as the ordinary kriging, with the addition of a fourth high-probability region between downtown and the airport. The highest probabilities, approaching 80%, are shown near Kearns and on the east side north of I-80. Total earnings for the Uber end points (Figure 6) were also used for kriging simulations. Figure 22 shows the results, with the airport identified by high probabilities of earnings greater than $8 at 90%. Another, broad region of high probabilities covers the southeast quadrant of the Salt Lake Valley, where only a few data points exist. However, the small sample size and poor variogram fit (not shown) for the end point data make this result highly suspect. The area between downtown Salt Lake City and the university also stands out as trips ending there have very low probabilities (less than 10%) of exceeding $8.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-figure-6-kriging-simulations-showing-the-probability-of-uber-trip-earnings-greater-than-8-based-on-trip-start-points-left-and-end-points-right">
+
+
+  <a data-fancybox="" href="/project/advanced-geographic-data-analysis/Uber%20kriging%20simulations_hu2aa168dd79105bb9f6469958ddb069d1_461943_2000x2000_fit_lanczos_2.png" data-caption="Figure 6. Kriging simulations showing the probability of Uber trip earnings greater than $8 based on trip start points (left) and end points (right).">
+
+
+  <img data-src="/project/advanced-geographic-data-analysis/Uber%20kriging%20simulations_hu2aa168dd79105bb9f6469958ddb069d1_461943_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="804" height="600">
+</a>
+
+
+  
+  
+  <figcaption>
+    Figure 6. Kriging simulations showing the probability of Uber trip earnings greater than $8 based on trip start points (left) and end points (right).
+  </figcaption>
+
+
+</figure>
+
+<p><strong>All references and citations can be found in the <a href="/files/Uber%20Final%20Report%20w%20Figures.pdf" target="_blank">Full Report</a>.</strong></p>
+<h2 id="msgis-program-skills">MSGIS Program Skills</h2>
+<ul>
+<li>GIS Analysis</li>
+<li>Spatial Data and Algorithms</li>
+<li>GIS Workflow</li>
+<li>Spatial Analysis</li>
+<li>Data Models and Structures</li>
+<li>Database Design</li>
+<li>Communication Skills</li>
+<li>Scripting (R)</li>
+</ul>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/spatial-analysis/">Spatial Analysis</a>
+  
+  <a class="badge badge-light" href="/tag/gis-analysis/">GIS Analysis</a>
+  
+  <a class="badge badge-light" href="/tag/gis-workflow/">GIS Workflow</a>
+  
+  <a class="badge badge-light" href="/tag/spatial-algorithms/">Spatial Algorithms</a>
+  
+  <a class="badge badge-light" href="/tag/data-models/">Data Models</a>
+  
+  <a class="badge badge-light" href="/tag/database-design/">Database Design</a>
+  
+  <a class="badge badge-light" href="/tag/communication/">Communication</a>
+  
+  <a class="badge badge-light" href="/tag/scripting/">Scripting</a>
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">Machine Learning</a>
+  
+  <a class="badge badge-light" href="/tag/r/">R</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://eneemann.github.io/project/advanced-geographic-data-analysis/&amp;text=Advanced%20Geographic%20Data%20Analysis" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://eneemann.github.io/project/advanced-geographic-data-analysis/&amp;t=Advanced%20Geographic%20Data%20Analysis" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Advanced%20Geographic%20Data%20Analysis&amp;body=https://eneemann.github.io/project/advanced-geographic-data-analysis/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://eneemann.github.io/project/advanced-geographic-data-analysis/&amp;title=Advanced%20Geographic%20Data%20Analysis" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://eneemann.github.io/project/advanced-geographic-data-analysis/&amp;title=Advanced%20Geographic%20Data%20Analysis" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/erik-neemann/avatar_hu7959ef427b90abd110d7e2555125f096_1185389_270x270_fill_q90_lanczos_center.jpg" alt="Erik Neemann">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://eneemann.github.io/">Erik Neemann</a></h5>
+        <h6 class="card-subtitle">GIS Analyst</h6>
+        <p class="card-text">I&rsquo;m interested in solving spatial problems with Python tools.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:erikneemann@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/erikneemann/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/eneemann" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/Erik_AGRC" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/geocomputation/">Geocomputation</a></li>
+      
+      <li><a href="/project/capstone/">Capstone</a></li>
+      
+      <li><a href="/project/spatial-modeling/">Spatial Modeling</a></li>
+      
+      <li><a href="/project/geoprocessing-with-python/">Geoprocessing with Python</a></li>
+      
+      <li><a href="/project/remote-sensing-analysis/">Remote Sensing Analysis</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
